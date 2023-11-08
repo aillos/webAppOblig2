@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# JetBrains
+.idea/
+
+# Other things
+Wildstays2/ClientApp/.angular/cache/*

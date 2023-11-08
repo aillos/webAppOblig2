@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "Wildstays2"
+  "defaultProject": "Wildstays2",
+  "cli": {
+    "analytics": false
+  }
 }
