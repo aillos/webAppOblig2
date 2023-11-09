@@ -33,7 +33,7 @@ namespace Wildstays2.Controllers
 
 
         // Index
-        [HttpPost("index")]
+        [HttpGet("index")]
         public async Task<IActionResult> Index(String? Place, int? AmountGuests, int? AmountBathrooms, int? AmountBedrooms, int? MinPrice, int? MaxPrice, DateTime? StartDate, DateTime? EndDate)
         {
             //Returnes the listings with filters, if any, see the method in Itemrepository for further information.
@@ -45,7 +45,7 @@ namespace Wildstays2.Controllers
 
 
         // Detail action, same as in listingscontroller, but has reservations in it
-        [HttpPost("details")]
+        [HttpGet("details/{id}")]
         public async Task<IActionResult> Details(int id)
         {
             var listing = await _itemRepository.GetItemById(id);
@@ -59,7 +59,7 @@ namespace Wildstays2.Controllers
         // Creates a reservation
         [Authorize]
         [HttpPost]
-        [HttpPost("createReservation")]
+        [HttpPost("createReservation/{listingId}")]
         public async Task<IActionResult> CreateReservation(int listingId, DateTime startDate, DateTime endDate)
         {
             try

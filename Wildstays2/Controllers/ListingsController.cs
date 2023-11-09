@@ -55,7 +55,7 @@ namespace Wildstays2.Controllers
 
         // GET: Listings/Details/5
         [Authorize]
-        [HttpPost("details")]
+        [HttpGet("details/{id}")]
         public async Task<IActionResult> Details(int id)
         {
             var listing = await _itemRepository.GetItemById(id);
@@ -145,7 +145,7 @@ namespace Wildstays2.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        [HttpPost("edit")]
+        [HttpPut("edit/{id}")]
         public async Task<IActionResult> Edit(int id, Listing listing, List<IFormFile> Images, int? deleteImage, string submit)
         {
             //If the listing is not found
@@ -227,7 +227,7 @@ namespace Wildstays2.Controllers
 
 
         // POST: Listings/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpDelete("Delete/{id}")]
         [ValidateAntiForgeryToken]
         [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
