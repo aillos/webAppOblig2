@@ -1,16 +1,364 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+html {
+  font-size: 14px;
+  color: #06030c;
+  background: #E8E3F8;
 }
 
-code {
-  color: #e01a76;
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+    color: #06030c;
+  }
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  color: #06030c;
+  background: #E8E3F8;
+}
+/*Search styling start */
+#searchButton {
+  border-radius: 15px;
+  border: none;
+  background-color: #659DBD;
+  color: #06030c;
+  padding: 1px 22px;
+  height: 30px;
+}
+
+.backgroundHome {
+  width: 100%;
+  height: 100%;
+  background-image: url("https://i.imgur.com/TZd8BWo.png");
+  background-repeat: repeat-y;
+  background-size: cover;
+  justify-content: center;
+  text-align: center;
+
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 400px;
+  height: 150px;
+  align-self: center;
+  justify-self: center;
+  background-color: transparent;
+  margin: auto auto 35px;
+}
+
+#searchButton {
+  flex: auto;
+}
+
+#search {
+  width: 270px;
+  border-radius: 15px;
+  padding: 2px 5px;
+  height: 30px;
+  background-color: #E8E3F8;
+  border: 1px solid #ccc;
+  flex:3;
+  margin-left:10px;
+}
+/*Search styling end*/
+
+/*Slideshow styling*/
+
+.bilder {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background-color:#E8E3F8;
+}
+
+
+.slide-container {
+  justify-self:center;
+  width:700px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.image-slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1s;
+}
+
+.slides-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.img {
+  position: relative;
+  width: 220px;
+  height: 285px;
+  object-fit:cover;
+  transition: 0.5s;
+}
+
+.button {
+  position: absolute;
+  width: 220px;
+  height: 285px;
+  transition: 0.5s;
+  background-color: rgb(40, 40, 40, 0.7);
+
+}
+/*Slideshow styling end*/
+
+/*Slideshow css logic start*/
+
+#slider-span1:target ~ .image-slider #img1,
+#slider-span1:target ~ .image-slider #button-1,
+#slider-span2:target ~ .image-slider #img2,
+#slider-span2:target ~ .image-slider #button-2,
+#slider-span3:target ~ .image-slider #img3,
+#slider-span3:target ~ .image-slider #button-3,
+#slider-span4:target ~ .image-slider #img4,
+#slider-span4:target ~ .image-slider #button-4,
+#slider-span5:target ~ .image-slider #img5,
+#slider-span5:target ~ .image-slider #button-5 {
+  width: 220px;
+  height: 285px;
+  color: transparent;
+  background-color: transparent;
+}
+
+#slider-span1:target ~ .image-slider {
+  left: 70%;
+}
+
+#slider-span2:target ~ .image-slider {
+  left: 35%;
+}
+
+#slider-span3:target ~ .image-slider {
+  left: 0%;
+}
+#slider-span4:target ~ .image-slider {
+  left: -35%;
+}
+
+#slider-span5:target ~ .image-slider {
+  left: -70%;
+}
+/*Slideshow css end*/
+
+.dateDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/*Calendar styling*/
+#calendar {
+  width: 400px;
+  height: 300px;
+  color: #111;
+  border: 1px solid rgb(222,222,222,0.6);
+  border-radius: 2%;
+  margin-bottom: 20px;
+  background-color: #E8E3F8;
+  margin-top: -35px;
+}
+
+#calendar2 {
+  width: 400px;
+  height: 300px;
+  color: #111;
+  border: 2px solid #111;
+  border-radius: 2%;
+  margin-bottom: 20px;
+  background-color: #E8E3F8;
+  margin-top: 10px;
+}
+
+
+.calendarInfo{
+  margin:-80px auto 45px auto;
+  text-align:center;
+  background-color:#E8E3F8;
+  width:380px;
+  height:38px;
+  border-radius:25px;
+  font-size:12px;
+}
+
+/*Chosen date styling*/
+#dates {
+  background-color: #E8E3F8;
+  border-radius: 15px;
+  width: 350px;
+  height: 30px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/*Calendar button css styling start */
+.fc-button.fc-next-button.fc-button-primary {
+  background-color: #659DBD;
+  border-color: #659DBD;
+  color: #06030c;
+  border-radius: 15px;
+}
+
+.fc-button.fc-next-button.fc-button-primary:hover {
+  background-color: #4987ab;
+}
+
+.fc-button.fc-next-button.fc-button-primary:focus {
+  background-color: #4987ab;
+}
+
+.fc-button.fc-next-button.fc-button-primary:active {
+  background-color: #4987ab;
+}
+
+.fc-button.fc-prev-button.fc-button-primary {
+  background-color: #659DBD;
+  border-color: #659DBD;
+  color: #06030c;
+  border-radius: 15px;
+}
+
+.fc-button.fc-prev-button.fc-button-primary:hover {
+  background-color: #659DBD;
+
+}
+
+.fc-button.fc-prev-button.fc-button-primary:focus {
+  background-color: #4987ab;
+}
+
+.fc-button.fc-prev-button.fc-button-primary:active {
+  background-color: #4987ab;
+}
+
+
+
+.fc-highlight {
+  background: green;
+  opacity: 1;
+  border: 2px solid green;
+  border-radius: 15px;
+}
+
+.fc-header-toolbar.fc-header-toolbar {
+  margin-left: 5px;
+}
+
+.fc-today-button.fc-button.fc-button {
+  border-radius: 15px;
+  background-color: #4987ab;
+  border: none;
+  color: #06030c;
+}
+/*Calendar button css styling end */
+/* Styling sliding toggle button */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #659dbd;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #659dbd;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(21px);
+  -ms-transform: translateX(21px);
+  transform: translateX(21px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 28px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+label[for="toggleFilterBtnCheckbox"] {
+  font-size: 20px;
+}
+
+/*Slider end*/
+
+/* Button styling */
+.buttonStyle {
+  margin-bottom: 20px;
+  background-color: #659DBD;
+  border-radius: 25px;
+  border: none;
+  width: 120px;
+  height: 30px;
+  text-align: center;
+  color: #06030c;
+  justify-content:center;
 }
