@@ -3,7 +3,6 @@
   <div class="searchBar">
     <select id="search" name="Search" [(ngModel)]="searchTerm">
       <option value="">Select a Place</option>
-      <option value="">Select a Place</option>
       <option value="Oslo">Oslo</option>
       <option value="Bergen">Bergen</option>
       <option value="Trondheim">Trondheim</option>
@@ -11,7 +10,7 @@
     <button id="searchButton" (click)="onSearch()">Search</button><br/>
   </div>
 
-  <full-calendar id="calendar"></full-calendar>
+  <full-calendar [options]="calendarOptions" id="calendar"></full-calendar>
 
   <div id="dates">
     <!-- Selected dates: {{ startDate }} to {{ endDate }} -->

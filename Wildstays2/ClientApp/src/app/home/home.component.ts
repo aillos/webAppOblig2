@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FullCalendarComponent } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 
 @Component({
@@ -6,34 +7,59 @@ import dayGridPlugin from '@fullcalendar/daygrid';
   templateUrl: './home.component.html',
   styleUrls: ['../../styles.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   public searchTerm: string = '';
   public startDate: string = '';
   public endDate: string = '';
-  public reservations: any[] = []; // Replace 'any' with appropriate type for reservations
+  public reservations: any[] = []; // Replace 'any' with the appropriate type for reservations
+  public calendarOptions: any;
 
-  calendarOptions = {
-    plugins: [dayGridPlugin],
-    initialView: 'dayGridMonth',
-  };
+ // constructor(private reservationService: ReservationService) {}
 
   ngOnInit(): void {
-    // Load initial data here, e.g., this.loadReservations();
+    //this.loadReservations();
+    this.initializeCalendar();
   }
 
-  private loadReservations(): void {
-    // Fetch reservations from a service and populate the 'resnpmervations' array
-    // Example: this.reservationService.getReservations().subscribe(data => this.reservations = data);
+ /* private loadReservations(): void {
+    // Fetch reservations from a service and populate the 'reservations' array
+    this.reservationService.getReservations().subscribe(data => {
+      this.reservations = data;
+      this.updateCalendarEvents();
+    });
+  }*/
+
+  private initializeCalendar(): void {
+    this.calendarOptions = {
+      plugins: [dayGridPlugin],
+      initialView: 'dayGridMonth',
+      selectable: true,
+      select: this.handleDateSelect.bind(this)
+    };
   }
 
-  onSearch(): void {
-    // Add logic to handle search
-    // Example: filter the reservations based on the search term
-  }
-
-  onSelectDates(startDate: string, endDate: string): void {
+  private handleDateSelect(selectInfo: any): void {
+    const startDate = selectInfo.startStr;
+    const endDate = selectInfo.endStr;
     this.startDate = startDate;
     this.endDate = endDate;
-    // Add logic to handle date selection
+
+    const eventsDuringSelection = this.reservations.filter(reservation => {
+      const eventStart = new Date(reservation.start);
+      const eventEnd = new Date(reservation.end);
+      return eventStart < selectInfo.end && eventEnd > selectInfo.start;
+    });
+
+    if (eventsDuringSelection.length > 0) {
+      alert('Selection includes a reserved date!');
+    }
+  }
+
+  private updateCalendarEvents(): void {
+    // Update the calendar with events from the reservations array
+  }
+
+  public onSearch(): void {
+    // Filter reservations based on the search term and update the calendar
   }
 }
