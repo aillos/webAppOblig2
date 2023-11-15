@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FullCalendarComponent } from '@fullcalendar/angular';
+import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 
 @Component({
@@ -31,7 +32,10 @@ export class HomeComponent implements OnInit {
 
   private initializeCalendar(): void {
     this.calendarOptions = {
-      plugins: [dayGridPlugin],
+      plugins: [
+        interactionPlugin,
+        dayGridPlugin,
+      ],
       initialView: 'dayGridMonth',
       selectable: true,
       select: this.handleDateSelect.bind(this)
