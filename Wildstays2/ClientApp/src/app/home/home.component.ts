@@ -37,6 +37,9 @@ export class HomeComponent implements OnInit {
         dayGridPlugin,
       ],
       initialView: 'dayGridMonth',
+      fixedWeekCount: false,
+      timeFormat: 'H(:mm)',
+      displayEventTime: false,
       selectable: true,
       select: this.handleDateSelect.bind(this)
     };
