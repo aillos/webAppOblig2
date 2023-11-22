@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FullCalendarModule } from "@fullcalendar/angular";
 import { ReservationsComponent } from './reservations/reservations.component';
+import { ReservationdetailsComponent } from './reservations/reservationdetails.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ReservationsComponent } from './reservations/reservations.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    ReservationdetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,6 +33,8 @@ import { ReservationsComponent } from './reservations/reservations.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'reservations', component: ReservationsComponent },
+      { path: 'reservationdetails', component: ReservationdetailsComponent },
+      { path: 'reservationdetails/:id', component: ReservationdetailsComponent },
     ])
   ],
   providers: [],

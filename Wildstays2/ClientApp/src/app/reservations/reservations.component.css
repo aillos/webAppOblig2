@@ -1,0 +1,28 @@
+.row {
+  grid-column-gap: 15px;
+  grid-row-gap: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.col {
+  max-width: 350px;
+}
+
+.card {
+  background-color: #DAAD86;
+  padding: 20px;
+  min-width: 280px;
+}
+
+h1 {
+  padding-bottom: 30px;
+}
+
+.text-left {
+  float: left;
+}
+
+.text-right {
+  float: right;
+}

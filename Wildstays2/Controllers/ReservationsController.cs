@@ -36,10 +36,20 @@ namespace Wildstays2.Controllers
             var reservations = await _itemRepository.GetAll();
             if (reservations == null)
             {
-                _logger.LogError("Reservation not found");
                 return NotFound("Reservation list not found");
             }
             return Ok(reservations);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetItemsById(int id)
+        {
+            var reservation = await _itemRepository.GetItemById(id);
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+            return Ok(reservation);
         }
 
         // Index

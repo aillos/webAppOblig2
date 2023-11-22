@@ -16,4 +16,9 @@ export class ReservationService {
   getReservations(): Observable<RReservation[]> {
     return this._http.get<RReservation[]>(this.baseUrl);
   }
+
+  getReservationById(Id: number): Observable<any> {
+    const url = `${this.baseUrl}/${Id}`;
+    return this._http.get(url);
+  }
 }
