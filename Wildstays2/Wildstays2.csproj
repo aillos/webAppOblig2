@@ -39,6 +39,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\reservations\reservation.ts" />
+    <None Remove="ClientApp\src\app\reservations\reservations.component.ts" />
+    <None Remove="ClientApp\src\app\reservations\reservations.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Areas\Identity\Pages\Account\AccessDenied.cshtml" />
     <None Include="Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
     <None Include="Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
@@ -79,6 +85,12 @@
     <None Include="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
     <None Include="Areas\Identity\Pages\_ViewImports.cshtml" />
     <None Include="Areas\Identity\Pages\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\reservations\reservation.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\reservations\reservations.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\reservations\reservations.service.ts" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

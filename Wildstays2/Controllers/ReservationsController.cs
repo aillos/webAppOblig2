@@ -30,7 +30,17 @@ namespace Wildstays2.Controllers
             _userManager = userManager;
         }
 
-
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var reservations = await _itemRepository.GetAll();
+            if (reservations == null)
+            {
+                _logger.LogError("Reservation not found");
+                return NotFound("Reservation list not found");
+            }
+            return Ok(reservations);
+        }
 
         // Index
         [HttpGet("index")]
