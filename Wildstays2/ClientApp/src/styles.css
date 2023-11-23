@@ -282,6 +282,12 @@ body {
   color: #06030c;
 }
 /*Calendar button css styling end */
+
+/*Calendar Today Styling*/
+.fc-day.fc-day-thu.fc-day-today.fc-daygrid-day{
+  background-color: rgba(73,135,171, 0.3);
+ }
+
 /* Styling sliding toggle button */
 .switch {
   position: relative;

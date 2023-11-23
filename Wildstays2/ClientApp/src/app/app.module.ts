@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FullCalendarModule } from "@fullcalendar/angular";
 import { ReservationsComponent } from './reservations/reservations.component';
 import { ReservationdetailsComponent } from './reservations/reservationdetails.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -23,20 +24,21 @@ import { ReservationdetailsComponent } from './reservations/reservationdetails.c
     ReservationsComponent,
     ReservationdetailsComponent
   ],
-  imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpClientModule,
-    FormsModule,
-    FullCalendarModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'reservations', component: ReservationsComponent },
-      { path: 'reservationdetails', component: ReservationdetailsComponent },
-      { path: 'reservationdetails/:id', component: ReservationdetailsComponent },
-    ])
-  ],
+    imports: [
+        BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
+        HttpClientModule,
+        FormsModule,
+        FullCalendarModule,
+        RouterModule.forRoot([
+            {path: '', component: HomeComponent, pathMatch: 'full'},
+            {path: 'counter', component: CounterComponent},
+            {path: 'fetch-data', component: FetchDataComponent},
+            {path: 'reservations', component: ReservationsComponent},
+            {path: 'reservationdetails', component: ReservationdetailsComponent},
+            {path: 'reservationdetails/:id', component: ReservationdetailsComponent},
+        ]),
+        NgOptimizedImage
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

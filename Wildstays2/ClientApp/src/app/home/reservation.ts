@@ -1,13 +1,8 @@
 ﻿export interface RReservation {
   Id: number;
-  Name: string;
+  Name : string;
+  ListingId: string;
   Place: string;
-  Guests: number;
-  Type: string;
-  Price: number;
-  Bedrooms: number;
-  Bathrooms: number;
-  Description: string;
   StartDate: string;
   EndDate: string;
 }

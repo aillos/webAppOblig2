@@ -21,6 +21,7 @@ public interface IItemRepository
     bool StartEndCheck(DateTime startDate, DateTime endDate);
     Task<IEnumerable<Listing>> FilterListings(String? Place, int? AmountGuests, int? AmountBathrooms, int? AmountBedrooms,int? MinPrice, int? MaxPrice, DateTime? StartDate, DateTime? EndDate );
 
+    Task<IEnumerable<Image>> GetImages();
     Task<IEnumerable<Reservation>> GetReservations();
 
 }

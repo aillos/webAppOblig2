@@ -18,12 +18,13 @@
   </div>
 
   <!-- Form for Reservation -->
-  <form action="/Reservations" method="get">
-    <input type="hidden" id="placeInput" name="Place" [value]="searchTerm">
-    <input type="hidden" id="startDateInput" name="StartDate" [value]="startDate">
-    <input type="hidden" id="endDateInput" name="EndDate" [value]="endDate">
-    <button type="submit" class="buttonStyle">See results</button>
+  <form>
+    <input type="hidden" id="placeInput" name="Place" [(ngModel)]="searchTerm">
+    <input type="hidden" id="startDateInput" name="StartDate" [(ngModel)]="startDate">
+    <input type="hidden" id="endDateInput" name="EndDate" [(ngModel)]="endDate">
+    <button (click)="navigateToReservations()" class="buttonStyle">See results</button>
   </form>
+
 
   <!-- Slideshow -->
   <div class="bilder">
@@ -61,31 +62,12 @@
   </div>
   <br />
   <br />
+  <img src="assets/ed681c19-05d3-4899-8e42-2af184468e6a_Predator_3840x2160.jpg" alt="" height="1024" width="1025">
+  <img src="uploads/ed681c19-05d3-4899-8e42-2af184468e6a_Predator_3840x2160.jpg" alt="" height="1024" width="1025">
 
-  <div class="row">
-    <div *ngFor="let reservation of reservations" class="col">
-      <div class="card">
-        <div class="row">
-          <div class="text-center">
-            <h3>{{ reservation.Name }}</h3>
-          </div>
-        </div>
-        <div>
-          <div class="text-left">
-            <h5>{{ reservation.Place }}</h5>
-            <h5>{{ reservation.Guests }} GUEST(S)</h5>
-          </div>
-          <div class="text-right">
-            <h5>{{ reservation.Type }}</h5>
-            <h5>{{ reservation.Price }}</h5>
-          </div>
-        </div>
-        <div class="row">
-          <div class="text-center">
-            <a [routerLink]="['/reservationdetails', reservation.Id]">Go to listing</a>
-          </div>
-        </div>
-      </div>
+  <div class="image-gallery">
+    <div *ngFor="let image of images" class="image-container">
+      <img  [src]="image.FilePath" [alt]="image.ListingId">
     </div>
   </div>
 </div>

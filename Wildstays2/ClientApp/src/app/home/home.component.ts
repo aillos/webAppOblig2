@@ -4,6 +4,9 @@ import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { RReservation } from "./reservation";
 import { ReservationService } from "./reservations.service";
+import {Router} from "@angular/router";
+import {ImageService} from "./image.service";
+import {IImages} from "./images";
 
 @Component({
   selector: 'app-home',
@@ -16,19 +19,30 @@ export class HomeComponent implements OnInit {
   public endDate: string = '';
   public calendarOptions: any;
   public reservations: RReservation[] = [];
+  public images: IImages[] = [];
 
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
 
-  constructor(private reservationService: ReservationService) {}
+  constructor(private reservationService: ReservationService, private _router:Router, private imageService: ImageService) {
+  }
 
+  navigateToReservations(){
+    this._router.navigate(['/reservations'])
+  }
   private loadReservations(): void {
     this.reservationService.getReservations().subscribe(data => {
       this.reservations = data;
       this.updateCalendarEvents();
     });
   }
+  private loadImages(): void {
+    this.imageService.getImages().subscribe(data => {
+      this.images = data;
+    });
+  }
 
   ngOnInit(): void {
+    this.loadImages();
     this.loadReservations();
     this.initializeCalendar();
   }
@@ -42,6 +56,7 @@ export class HomeComponent implements OnInit {
       displayEventTime: false,
       selectable: true,
       select: this.handleDateSelect.bind(this),
+      nowIndicator: true,
       events: []
     };
   }
@@ -59,14 +74,13 @@ export class HomeComponent implements OnInit {
   }
 
 
-
   public transformToEvents(): any[] {
     return this.reservations.map(reservation => {
       let endDate = new Date(reservation.EndDate);
       endDate = new Date(endDate.setDate(endDate.getDate() + 1));
 
       return {
-        title: "Listing: " + reservation.Id,
+        title: "Listing: " + reservation.ListingId,
         start: new Date(reservation.StartDate).toISOString().split('T')[0],
         end: endDate.toISOString().split('T')[0],
         display: 'background',
@@ -77,20 +91,20 @@ export class HomeComponent implements OnInit {
   }
 
 
-  private handleDateSelect(selectInfo: any): void {
-    const startDate = selectInfo.startStr;
-    const endDate = selectInfo.endStr;
-    this.startDate = startDate;
-    this.endDate = endDate;
+  private handleDateSelect(selectInfo: { startStr: string, endStr: string, start: Date, end: Date }): void {
+    const startDate = new Date(selectInfo.startStr);
+    const currentDate = new Date();
 
-    const eventsDuringSelection = this.reservations.filter(reservation => {
-      const eventStart = new Date(reservation.StartDate);
-      const eventEnd = new Date(reservation.EndDate);
-      return eventStart < selectInfo.end && eventEnd > selectInfo.start;
-    });
+    currentDate.setHours(0, 0, 0, 0);
 
-    if (eventsDuringSelection.length > 0) {
-      alert('Selection includes a reserved date!');
+    if (startDate < currentDate) {
+      alert('The selected start date is in the past.');
+    } else {
+      this.startDate = selectInfo.startStr;
+      this.endDate = selectInfo.endStr;
     }
   }
+
+
+  public onSearch(){}
 }

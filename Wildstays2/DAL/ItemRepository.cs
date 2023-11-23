@@ -294,6 +294,21 @@ public class ItemRepository : IItemRepository
         }
     }
 
+    
+    public async Task<IEnumerable<Image>> GetImages()
+    {
+        try
+        {
+            // fetching images
+            return await _db.Images.ToListAsync();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("[ItemRepository] Failed to get images, error message: {e}", e.Message);
+            return null;
+        }
+    }
+    
     // IItemRepository
     public async Task<bool> CreateReservation(Reservation reservation)
     {
