@@ -1,32 +1,24 @@
-using System.Diagnostics;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Wildstays2.DAL;
-using Wildstays2.Models;
+using System.Threading.Tasks;
 
 namespace Wildstays2.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class HomeController : Controller
+public class HomeController : ControllerBase
 {
-
     private readonly IItemRepository _itemRepository;
-    private readonly ILogger<ReservationsController> _logger;
-    private readonly UserManager<IdentityUser> _userManager;
 
     public HomeController(IItemRepository itemRepository)
     {
         _itemRepository = itemRepository;
     }
 
-    public async Task<IActionResult> Index()
+    [HttpGet("reservations")]
+    public async Task<IActionResult> GetReservations()
     {
         var reservations = await _itemRepository.GetReservations();
-        ViewData["SearchTerm"] = HttpContext.Request.Query["Search"];
-        return View(reservations);
+        return Ok(reservations);
     }
-    
-    
-
 }
