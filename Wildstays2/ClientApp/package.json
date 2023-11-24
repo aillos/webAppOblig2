@@ -26,6 +26,7 @@
     "@fullcalendar/interaction": "^6.1.9",
     "@fullcalendar/list": "^6.1.9",
     "@fullcalendar/timegrid": "^6.1.9",
+    "angular-responsive-carousel": "^2.1.2",
     "bootstrap": "^5.2.3",
     "jquery": "^3.6.4",
     "oidc-client": "^1.11.5",

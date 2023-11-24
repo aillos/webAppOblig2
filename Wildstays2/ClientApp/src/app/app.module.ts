@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FullCalendarModule } from "@fullcalendar/angular";
 import { ReservationsComponent } from './reservations/reservations.component';
 import { ReservationdetailsComponent } from './reservations/reservationdetails.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
@@ -29,6 +30,7 @@ import {NgOptimizedImage} from "@angular/common";
         HttpClientModule,
         FormsModule,
         FullCalendarModule,
+        IvyCarouselModule,
         RouterModule.forRoot([
             {path: '', component: HomeComponent, pathMatch: 'full'},
             {path: 'counter', component: CounterComponent},

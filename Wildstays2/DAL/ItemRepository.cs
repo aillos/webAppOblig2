@@ -265,7 +265,7 @@ public class ItemRepository : IItemRepository
 
 
     //Method to get reservations by user id.
-    public async Task<IEnumerable<Reservation>?> GetReservationByUserId(string userId)
+    public async Task<IEnumerable<Reservation>> GetReservationByUserId(string userId)
     {
         try
         {
@@ -275,6 +275,20 @@ public class ItemRepository : IItemRepository
         catch (Exception e)
         {
             _logger.LogError("[ItemRepository] Failed to find the reservation based on UserID error message: {e}", e.Message);
+            return null;
+        }
+
+    }
+    
+    public async Task<IEnumerable<Reservation>> GetReservationsByListingId(int listingId)
+    {
+        try
+        {
+            return await _db.Reservations.Where(r => r.ListingId == listingId).ToListAsync();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("[ItemRepository] Failed to find the reservation based on ListingID error message: {e}", e.Message);
             return null;
         }
 

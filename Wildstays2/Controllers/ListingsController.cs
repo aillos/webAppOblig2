@@ -50,7 +50,7 @@ namespace Wildstays2.Controllers
             }
             //Gets all the listings for a user.
             var listings = await _itemRepository.GetListingsByUserId(user.Id);
-            return View(listings);
+            return Ok(listings);
         }
 
         // GET: Listings/Details/5
@@ -70,14 +70,14 @@ namespace Wildstays2.Controllers
                 return Forbid();
             }
 
-            return View(listing);
+            return Ok(listing);
         }
 
         // GET: Listings/Create
         [Authorize]
         public IActionResult Create()
         {
-            return View();
+            return Ok();
         }
 
         // POST: Listings/Create
@@ -99,14 +99,14 @@ namespace Wildstays2.Controllers
                 if (!_itemRepository.DateCheck(listing.StartDate))
                 {
                     ModelState.AddModelError("StartDate", "Start Date cannot be before today's date.");
-                    return View(listing);
+                    return Ok(listing);
                 }
 
                 // Check if the end date is before the start date
                 if (!_itemRepository.StartEndCheck(listing.StartDate, listing.EndDate))
                 {
                     ModelState.AddModelError("EndDate", "End Date cannot be before Start Date.");
-                    return View(listing);
+                    return Ok(listing);
                 }
 
                 //Set User Id
@@ -119,7 +119,7 @@ namespace Wildstays2.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-            return View(listing);
+            return Ok(listing);
         }
 
         // GET: Listings/Edit/5
@@ -138,7 +138,7 @@ namespace Wildstays2.Controllers
                 return Forbid();
             }
 
-            return View(listing);
+            return Ok(listing);
         }
 
 
@@ -198,7 +198,7 @@ namespace Wildstays2.Controllers
             {
                 _logger.LogError(ex, "An error occurred in Edit for listing ID: {ListingId}.", id);
             }
-            return View(existingListing);
+            return Ok(existingListing);
         }
 
 
@@ -221,7 +221,7 @@ namespace Wildstays2.Controllers
                 return Forbid();
             }
 
-            return View(listing);
+            return Ok(listing);
         }
 
 

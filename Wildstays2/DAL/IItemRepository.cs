@@ -23,6 +23,8 @@ public interface IItemRepository
 
     Task<IEnumerable<Image>> GetImages();
     Task<IEnumerable<Reservation>> GetReservations();
+    
+    Task<IEnumerable<Reservation>> GetReservationsByListingId(int listingId);
 
 }
 

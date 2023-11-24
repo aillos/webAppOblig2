@@ -59,7 +59,7 @@ namespace Wildstays2.Controllers
             //Returnes the listings with filters, if any, see the method in Itemrepository for further information.
             var listings = await _itemRepository.FilterListings(Place, AmountGuests, AmountBathrooms, AmountBedrooms, MinPrice, MaxPrice, StartDate, EndDate);
 
-            return View(listings);
+            return Ok(listings);
         }
 
 
@@ -73,9 +73,17 @@ namespace Wildstays2.Controllers
             {
                 return NotFound();
             }
-            return View(listing);
+            return Ok(listing);
         }
-
+        
+        [HttpGet("res/{id}")]
+        public async Task<IActionResult> GetReservationsByListingId(int listingId)
+        {
+            var reservations = await _itemRepository.GetReservationsByListingId(listingId);
+            _logger.LogInformation(reservations.ToString());
+            return Ok(reservations);
+        }
+        
         // Creates a reservation
         [Authorize]
         [HttpPost]
@@ -151,7 +159,8 @@ namespace Wildstays2.Controllers
             }
 
             var reservations = await _itemRepository.GetReservationByUserId(user.Id);
-            return View(reservations);
+            return Ok(reservations);
         }
     }
+    
 }

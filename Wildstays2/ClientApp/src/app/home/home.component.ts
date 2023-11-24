@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   public endDate: string = '';
   public calendarOptions: any;
   public reservations: RReservation[] = [];
-  public images: IImages[] = [];
+  public images: { path: string }[] = [];
 
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
 
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   }
   private loadImages(): void {
     this.imageService.getImages().subscribe(data => {
-      this.images = data;
+      this.images = data.map(img => ({ path: img.FilePath }));
     });
   }
 
@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
     this.loadReservations();
     this.initializeCalendar();
   }
+
 
   private initializeCalendar(): void {
     this.calendarOptions = {

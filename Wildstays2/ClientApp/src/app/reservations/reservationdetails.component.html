@@ -32,3 +32,14 @@
   <h5>DESCRIPTION:</h5>
   <p>{{ reservation.Description }}</p>
 </div>
+
+<full-calendar #calendar2 [options]="calendarOptions" id="calendar2"></full-calendar>
+
+<div id="dates2">
+  Selected dates: {{ startDate }} to {{ endDate }}
+</div>
+
+<div *ngFor="let reservation of bookedReservation" class="col">
+  <p>{{ reservation.StartDate }}</p>
+  <p>{{ reservation.EndDate }}</p>
+</div>
