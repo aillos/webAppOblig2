@@ -5,6 +5,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import {FullCalendarComponent} from "@fullcalendar/angular";
 import {BookedReservations} from "./bookedReservations";
+import {EventMountArg} from "@fullcalendar/core";
 
 @Component({
   selector: 'app-reservationdetails-component',
@@ -37,7 +38,7 @@ export class ReservationdetailsComponent {
   }
 
   private loadReservations(): void {
-    this._reservationService.getReservationsByListingId(this.id).subscribe(data => {
+    this._reservationService.getReservationsByListingId(35).subscribe(data => {
       this.bookedReservation = data;
       console.log('Updated bookedReservation:', this.bookedReservation);
       this.updateCalendarEvents();
@@ -66,11 +67,11 @@ export class ReservationdetailsComponent {
       endDate = new Date(endDate.setDate(endDate.getDate() + 1));
 
       return {
-        title: "Listing: " + reservations.ListingId,
+        title:"BOOKED",
         start: new Date(reservations.StartDate).toISOString().split('T')[0],
         end: endDate.toISOString().split('T')[0],
         display: 'background',
-        color: 'red',
+        color: "#B22222",
       };
     });
   }
@@ -92,14 +93,19 @@ export class ReservationdetailsComponent {
       plugins: [interactionPlugin, dayGridPlugin],
       initialView: 'dayGridMonth',
       fixedWeekCount: false,
-      timeFormat: 'H(:mm)',
       displayEventTime: false,
       selectable: true,
       select: this.handleDateSelect.bind(this),
       nowIndicator: true,
-      events: []
+      events: [],
+      eventDidMount: function (info: EventMountArg) {
+        if (info.event.display === 'background') {
+          info.el.style.opacity = '0.8';
+        }
+      },
     };
   }
+
 
   private handleDateSelect(selectInfo: { startStr: string, endStr: string, start: Date, end: Date }): void {
     const startDate = new Date(selectInfo.startStr);

@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit {
       endDate = new Date(endDate.setDate(endDate.getDate() + 1));
 
       return {
-        title: "Listing: " + reservation.ListingId,
+        //title: "Listing: " + reservation.ListingId,
         start: new Date(reservation.StartDate).toISOString().split('T')[0],
         end: endDate.toISOString().split('T')[0],
         display: 'background',

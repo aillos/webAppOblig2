@@ -77,9 +77,9 @@ namespace Wildstays2.Controllers
         }
         
         [HttpGet("res/{id}")]
-        public async Task<IActionResult> GetReservationsByListingId(int listingId)
+        public async Task<IActionResult> GetReservationsByListingId(int id)
         {
-            var reservations = await _itemRepository.GetReservationsByListingId(listingId);
+            var reservations = await _itemRepository.GetReservationsByListingId(id);
             _logger.LogInformation(reservations.ToString());
             return Ok(reservations);
         }

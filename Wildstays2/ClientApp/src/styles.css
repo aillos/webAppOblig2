@@ -301,3 +301,6 @@ label[for="toggleFilterBtnCheckbox"] {
   width:100%;
 }
 
+.fc-event-title{
+  font-weight: bold;
+}
