@@ -32,9 +32,9 @@ export class ReservationdetailsComponent {
     this._route.params.subscribe(params => {
       this.id = +params['id'];
       this.loadItem(this.id);
-      this.loadReservations();
     });
     this.initializeCalendar();
+    this.loadReservations();
   }
 
   private loadReservations(): void {
@@ -50,18 +50,20 @@ export class ReservationdetailsComponent {
 
 
   public updateCalendarEvents(): void {
+    console.log("Updated")
     const events = this.transformToEvents();
 
     if (this.calendarComponent && this.calendarComponent.getApi()) {
       const calendarApi = this.calendarComponent.getApi();
-      calendarApi.removeAllEvents();
       events.forEach(event => calendarApi.addEvent(event));
     }
+
   }
 
 
 
   public transformToEvents(): any[] {
+    console.log("Transformed")
     return this.bookedReservation.map(reservations => {
       let endDate = new Date(reservations.EndDate);
       endDate = new Date(endDate.setDate(endDate.getDate() + 1));
@@ -74,6 +76,7 @@ export class ReservationdetailsComponent {
         color: "#B22222",
       };
     });
+
   }
 
   loadItem(id: number) {

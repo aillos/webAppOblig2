@@ -164,7 +164,7 @@ public class ItemRepository : IItemRepository
                 {
 
                     var fileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
-                    var folder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
+                    var folder = Path.Combine(_webHostEnvironment.WebRootPath, "assets");
                     var filePath = Path.Combine(folder, fileName);
 
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
@@ -174,7 +174,7 @@ public class ItemRepository : IItemRepository
 
                     var image = new Image
                     {
-                        FilePath = "/uploads/" + fileName,
+                        FilePath = "/assets/" + fileName,
                         ListingId = existingListing.Id
                     };
 

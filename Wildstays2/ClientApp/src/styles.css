@@ -39,6 +39,8 @@ body {
   background-size: cover;
   justify-content: center;
   text-align: center;
+  margin-bottom:-60px;
+  margin-top:-18px;
 
 }
 
@@ -90,7 +92,7 @@ body {
 }
 
 #calendar2 {
-  width: 400px;
+  width: 420px;
   height: 300px;
   color: #111;
   border: 2px solid #111;
@@ -280,7 +282,7 @@ label[for="toggleFilterBtnCheckbox"] {
 }
 
 .slideshow{
-  width:800px;
+  width:825px;
   margin: auto;
 }
 

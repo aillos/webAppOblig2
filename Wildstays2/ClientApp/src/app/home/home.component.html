@@ -33,7 +33,11 @@
   <div class="slideshow">
     <carousel
       [images]="images"
-      [loop]="true">
+      [loop]="true"
+      [autoplay]="true"
+      [pauseOnHover]="true"
+      transitionTimingFunction="linear"
+      [transitionDuration]="350">
     </carousel>
   </div>
   </div>
@@ -43,4 +47,3 @@
   <br />
   <br />
 </div>
-
