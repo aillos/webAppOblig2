@@ -367,3 +367,4 @@ FodyWeavers.xsd
 
 # Other things
 Wildstays2/ClientApp/.angular/cache/*
+.DS_Store
