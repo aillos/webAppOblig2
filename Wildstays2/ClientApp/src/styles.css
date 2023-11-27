@@ -79,7 +79,9 @@ body {
   align-items: center;
   justify-content: center;
 }
-
+.fc-day {
+  height: 20px;
+}
 /*Calendar styling*/
 #calendar {
   width: 400px;
@@ -197,9 +199,10 @@ body {
 /*Calendar button css styling end */
 
 /*Calendar Today Styling*/
-.fc-day.fc-day-thu.fc-day-today.fc-daygrid-day{
-  background-color: rgba(73,135,171, 0.3);
- }
+:root {
+  --fc-today-bg-color: rgba(73,135,171, 0.3);
+}
+
 
 /* Styling sliding toggle button */
 .switch {
