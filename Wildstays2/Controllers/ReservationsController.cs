@@ -64,6 +64,13 @@ namespace Wildstays2.Controllers
             return Ok(reservations);
         }
         
+        [HttpGet("images/{id}")]
+        public async Task<IActionResult> GetImagesByListingId(int id)
+        {
+            var images = await _itemRepository.GetImagesByListingId(id);
+            return Ok(images);
+        }
+        
         // Creates a reservation
         [Authorize]
         [HttpPost]

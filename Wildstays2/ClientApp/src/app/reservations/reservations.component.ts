@@ -12,9 +12,6 @@ export class ReservationsComponent implements OnInit {
   reservations: any[] = [];
   filters: any = {}; // Object to store filter values
   isFilterFormVisible = false; // Set it to false by default
-  place: string = '';
-  startDate: string = '';
-  endDate: string = '';
 
   constructor(
     private _reservationService: ReservationService,
@@ -27,7 +24,8 @@ export class ReservationsComponent implements OnInit {
     // Initial load of reservations
     this.getIndexListings();
     this.route.queryParams.subscribe(params => {
-      this.filters.place = params['searchTerm'] || '';
+
+      this.filters.place = params['place'] || '';
       this.filters.startDate = params['startDate'] || '';
       this.filters.endDate = params['endDate'] || '';
 

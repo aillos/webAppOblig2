@@ -5,8 +5,6 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { RReservation } from "./reservation";
 import { ReservationService } from "./reservations.service";
 import {Router} from "@angular/router";
-import {ImageService} from "./image.service";
-import {IImages} from "./images";
 
 @Component({
   selector: 'app-home',
@@ -23,13 +21,13 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
 
-  constructor(private reservationService: ReservationService, private _router:Router, private imageService: ImageService) {
+  constructor(private reservationService: ReservationService, private _router:Router) {
   }
 
   navigateToReservations(){
     this._router.navigate(['/reservations'], {
     queryParams: {
-        searchTerm: this.searchTerm,
+        place: this.searchTerm,
         startDate: this.startDate,
         endDate: this.endDate
     }
@@ -42,7 +40,7 @@ export class HomeComponent implements OnInit {
     });
   }
   private loadImages(): void {
-    this.imageService.getImages().subscribe(data => {
+    this.reservationService.getImages().subscribe(data => {
       this.images = data.map(img => ({ path: img.FilePath }));
     });
   }
@@ -114,8 +112,4 @@ export class HomeComponent implements OnInit {
       this.endDate = endDate.toISOString().split('T')[0];
     }
   }
-
-
-
-  public onSearch(){}
 }

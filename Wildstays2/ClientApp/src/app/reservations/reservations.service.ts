@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RReservation } from './reservation';
 import {BookedReservations} from "./bookedReservations";
+import {IImages} from "./images";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ export class ReservationService {
   private baseUrl = 'api/reservations';
 
   constructor(private _http: HttpClient) { }
+
+  getReservations(): Observable<RReservation[]> {
+    return this._http.get<RReservation[]>(this.baseUrl);
+  }
 
     getFilteredReservations(filterOptions: any): Observable<RReservation[]> {
     let params = new HttpParams();
@@ -49,6 +54,11 @@ export class ReservationService {
   getReservationsByListingId(Id: number): Observable<BookedReservations[]> {
     const url = `${this.baseUrl}/res/${Id}`;
     return this._http.get<BookedReservations[]>(url);
+  }
+
+  getImagesById(Id: number): Observable<IImages[]> {
+    const url = `${this.baseUrl}/images/${Id}`;
+    return this._http.get<IImages[]>(url);
   }
 
 

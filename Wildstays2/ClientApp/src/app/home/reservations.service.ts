@@ -2,6 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RReservation } from './reservation';
+import {IImages} from "../reservations/images";
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,9 @@ export class ReservationService {
 
   getReservations(): Observable<RReservation[]> {
     return this._http.get<RReservation[]>(this.baseUrl);
+  }
+
+  getImages(): Observable<IImages[]> {
+    return this._http.get<IImages[]>(this.baseUrl);
   }
 }

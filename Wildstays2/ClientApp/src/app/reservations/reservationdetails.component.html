@@ -1,44 +1,61 @@
 <div class="text-center">
   <h1>{{ reservation.Name }}</h1>
 </div>
-
-<div class="row">
-  <div class="col">
+<div class="flex-container">
+<div class="leftRow">
+<div class="row row2">
+  <div class="col col2">
     <h5>PRICE PER NIGHT:</h5>
     <p>{{ reservation.Price }}</p>
   </div>
-  <div class="col">
+  <div class="col col2">
     <h5>LOCATION:</h5>
     <p>{{ reservation.Place }}</p>
   </div>
-  <div class="col">
+  <div class="col col2">
     <h5>TYPE:</h5>
     <p>{{ reservation.Type }}</p>
   </div>
-  <div class="col">
+  <div class="col col2">
     <h5>GUESTS:</h5>
     <p>{{ reservation.Guests }}</p>
   </div>
-  <div class="col">
+  <div class="col col2">
     <h5>BEDROOMS:</h5>
     <p>{{ reservation.Bedrooms }}</p>
   </div>
-  <div class="col">
+  <div class="col col2">
     <h5>BATHROOMS:</h5>
     <p>{{ reservation.Bathrooms }}</p>
   </div>
 </div>
-<div class="row">
+</div>
+<div class="rightRow">
+
+  <div class="slideshow2  ">
+    <carousel
+      [images]="images"
+      [loop]="true"
+      [autoplay]="true"
+      [pauseOnHover]="true"
+      transitionTimingFunction="linear"
+      [transitionDuration]="350">
+    </carousel>
+  </div>
+<div class="row row2" id="descriptionRow">
   <h5>DESCRIPTION:</h5>
   <p>{{ reservation.Description }}</p>
 </div>
-
-<full-calendar #calendar2 [options]="calendarOptions" id="calendar2"></full-calendar>
-
-<div id="dates2">
-  Selected dates: {{ startDate }} to {{ endDate }}
 </div>
 
+</div>
+<div id="calendarForm">
+<div id="dates2">
+  Selected: {{ startDate }} to {{ endDate }}
+</div>
 <div class="buttonStyle" style="margin:auto">
   Submit
 </div>
+</div>
+<full-calendar #calendar2 [options]="calendarOptions" id="calendar2"></full-calendar>
+
