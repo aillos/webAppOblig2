@@ -17,6 +17,31 @@ export class ReservationService {
   getReservations(): Observable<RReservation[]> {
     return this._http.get<RReservation[]>(this.baseUrl);
   }
+  
+    getFilteredReservations(filterOptions: any): Observable<RReservation[]> {
+    let params = new HttpParams();
+
+    // Handle 'All' case for Place filter
+    if (filterOptions.place !== undefined && filterOptions.place !== 'All') {
+      params = params.set('Place', filterOptions.place);
+    }
+
+    // Handle 'All' case for AmountGuests filter
+    if (filterOptions.amountGuests !== undefined && filterOptions.amountGuests !== 'All') {
+      params = params.set('AmountGuests', filterOptions.amountGuests);
+    }
+
+    params = params
+      .set('AmountBathrooms', filterOptions.amountBathrooms || '')
+      .set('AmountBedrooms', filterOptions.amountBedrooms || '')
+      .set('MinPrice', filterOptions.minPrice || '')
+      .set('MaxPrice', filterOptions.maxPrice || '')
+      .set('StartDate', filterOptions.startDate ? filterOptions.startDate.toISOString() : '')
+      .set('EndDate', filterOptions.endDate ? filterOptions.endDate.toISOString() : '');
+
+    return this._http.get<RReservation[]>(`${this.baseUrl}/index`, { params });
+  }
+
 
   getReservationById(Id: number): Observable<any> {
     const url = `${this.baseUrl}/${Id}`;
