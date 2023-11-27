@@ -39,7 +39,7 @@
           <option value="19">19 or more</option>
           <option value="20">20 or more</option>
         </select>
-        
+
         <label for="AmountBathrooms">Filter by Number of Bathrooms:</label>
         <select name="AmountBathrooms" class="form-control" [(ngModel)]="filters.amountBathrooms">
           <option value="0">All</option>
@@ -68,19 +68,19 @@
         <p>
           Filter by minimum price: <input type="text" name="MinPrice" [(ngModel)]="filters.minPrice" />
         </p>
-        
+
         <p>
           Filter by maximum price: <input type="text" name="MaxPrice" [(ngModel)]="filters.maxPrice" />
         </p>
-        
+
         <p>
           Filter by Start Date: <input type="date" name="StartDate" [(ngModel)]="filters.startDate" />
         </p>
-        
+
         <p>
           Filter by End Date: <input type="date" name="EndDate" [(ngModel)]="filters.endDate" />
         </p>
-      
+
       </div>
       <button type="submit" class="buttonStyle">Apply Filter</button>
 
@@ -100,7 +100,7 @@
       <div>
         <div class="text-left">
           <h5>{{ reservation.Place }}</h5>
-          <h5>{{ reservation.Guests }} GUEST(S)</h5>
+          <h5>{{ reservation.Guests }} GUEST{{ reservation.Guests > 1 ? "S" : "" }}</h5>
         </div>
         <div class="text-right">
           <h5>{{ reservation.Type }}</h5>
