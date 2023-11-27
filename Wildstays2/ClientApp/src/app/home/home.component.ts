@@ -42,7 +42,9 @@ export class HomeComponent implements OnInit {
   private loadImages(): void {
     this.reservationService.getImages().subscribe(data => {
       this.images = data.map(img => ({ path: img.FilePath }));
+      console.log(this.images);
     });
+
   }
 
   ngOnInit(): void {
