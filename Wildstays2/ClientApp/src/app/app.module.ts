@@ -12,6 +12,7 @@ import { ReservationsComponent } from './reservations/reservations.component';
 import { ReservationdetailsComponent } from './reservations/reservationdetails.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import {NgOptimizedImage} from "@angular/common";
+import { ConvertToCurrency } from './shared/convert-to-currency.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {NgOptimizedImage} from "@angular/common";
     NavMenuComponent,
     HomeComponent,
     ReservationsComponent,
-    ReservationdetailsComponent
+    ReservationdetailsComponent,
+    ConvertToCurrency
   ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

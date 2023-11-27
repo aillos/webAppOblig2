@@ -1,3 +1,5 @@
+<button class="btn btn-danger" (click)="navigateToReservations()">Back to reservations</button>
+
 <div class="text-center">
   <h1>{{ reservation.Name }}</h1>
 </div>
@@ -6,7 +8,7 @@
 <div class="row row2">
   <div class="col col2">
     <h5>PRICE PER NIGHT:</h5>
-    <p>{{ reservation.Price }}</p>
+    <p>{{ reservation.Price | convertToCurrency: 'kr.' }}</p>
   </div>
   <div class="col col2">
     <h5>LOCATION:</h5>

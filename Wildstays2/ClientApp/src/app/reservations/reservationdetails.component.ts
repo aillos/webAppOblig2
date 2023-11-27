@@ -96,6 +96,10 @@ export class ReservationdetailsComponent {
       });
   }
 
+  navigateToReservations() {
+    this._router.navigate(['/reservations']);
+  }
+
   private initializeCalendar(): void {
     this.calendarOptions = {
       plugins: [interactionPlugin, dayGridPlugin],
