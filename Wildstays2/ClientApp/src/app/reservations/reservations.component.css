@@ -26,3 +26,8 @@ h1 {
 .text-right {
   float: right;
 }
+/* Add this style to handle visibility */
+.visible {
+  display: block !important;
+}
+
