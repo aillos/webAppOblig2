@@ -1,6 +1,7 @@
 // Import ElementRef and Renderer2 from '@angular/core'
 import { Component, ElementRef, Renderer2, OnInit } from '@angular/core';
 import { ReservationService } from './reservations.service';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-reservations',
@@ -11,16 +12,27 @@ export class ReservationsComponent implements OnInit {
   reservations: any[] = [];
   filters: any = {}; // Object to store filter values
   isFilterFormVisible = false; // Set it to false by default
+  place: string = '';
+  startDate: string = '';
+  endDate: string = '';
 
   constructor(
     private _reservationService: ReservationService,
     private elementRef: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     // Initial load of reservations
     this.loadReservations();
+    this.route.queryParams.subscribe(params => {
+      this.filters.place = params['searchTerm'] || '';
+      this.filters.startDate = params['startDate'] || '';
+      this.filters.endDate = params['endDate'] || '';
+
+      this.applyFilters();
+    });
   }
 
   loadReservations() {

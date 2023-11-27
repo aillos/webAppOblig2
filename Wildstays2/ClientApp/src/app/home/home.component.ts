@@ -27,7 +27,13 @@ export class HomeComponent implements OnInit {
   }
 
   navigateToReservations(){
-    this._router.navigate(['/reservations'])
+    this._router.navigate(['/reservations'], {
+    queryParams: {
+        searchTerm: this.searchTerm,
+        startDate: this.startDate,
+        endDate: this.endDate
+    }
+    });
   }
   private loadReservations(): void {
     this.reservationService.getReservations().subscribe(data => {

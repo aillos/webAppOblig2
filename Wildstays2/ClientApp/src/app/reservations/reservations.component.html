@@ -2,7 +2,7 @@
   <input type="checkbox" id="toggleFilterBtnCheckbox" (change)="toggleFilterForm()">
   <span class="slider round"></span>
 </label>
-<label for="toggleFilterBtnCheckbox">Toggle Filter</label>
+<label for="toggleFilterBtnCheckbox" id="toggleLabel">Toggle Filter</label>
 <div id="filterFormContainer" [style.display]="isFilterFormVisible ? 'block' : 'none'">
   <form (ngSubmit)="applyFilters()" #filterForm="ngForm">
     <form (ngSubmit)="applyFilters()" #filterForm="ngForm">
@@ -39,7 +39,7 @@
           <option value="19">19 or more</option>
           <option value="20">20 or more</option>
         </select>
-        
+
         <label for="AmountBathrooms">Filter by Number of Bathrooms:</label>
         <select name="AmountBathrooms" class="form-control" [(ngModel)]="filters.amountBathrooms">
           <option value="0">All</option>
@@ -68,19 +68,19 @@
         <p>
           Filter by minimum price: <input type="text" name="MinPrice" [(ngModel)]="filters.minPrice" />
         </p>
-        
+
         <p>
           Filter by maximum price: <input type="text" name="MaxPrice" [(ngModel)]="filters.maxPrice" />
         </p>
-        
+
         <p>
           Filter by Start Date: <input type="date" name="StartDate" [(ngModel)]="filters.startDate" />
         </p>
-        
+
         <p>
           Filter by End Date: <input type="date" name="EndDate" [(ngModel)]="filters.endDate" />
         </p>
-      
+
       </div>
       <button type="submit" class="buttonStyle">Apply Filter</button>
 

@@ -214,6 +214,10 @@ body {
   display: inline-block;
   width: 48px;
   height: 28px;
+  margin-bottom:20px;
+}
+#toggleLabel{
+  margin-left:10px;
 }
 
 .switch input {
