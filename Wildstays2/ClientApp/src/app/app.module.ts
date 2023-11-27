@@ -7,8 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FullCalendarModule } from "@fullcalendar/angular";
 import { ReservationsComponent } from './reservations/reservations.component';
 import { ReservationdetailsComponent } from './reservations/reservationdetails.component';
@@ -20,8 +18,6 @@ import {NgOptimizedImage} from "@angular/common";
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     ReservationsComponent,
     ReservationdetailsComponent
   ],
@@ -33,8 +29,6 @@ import {NgOptimizedImage} from "@angular/common";
         IvyCarouselModule,
         RouterModule.forRoot([
             {path: '', component: HomeComponent, pathMatch: 'full'},
-            {path: 'counter', component: CounterComponent},
-            {path: 'fetch-data', component: FetchDataComponent},
             {path: 'reservations', component: ReservationsComponent},
             {path: 'reservationdetails', component: ReservationdetailsComponent},
             {path: 'reservationdetails/:id', component: ReservationdetailsComponent},
