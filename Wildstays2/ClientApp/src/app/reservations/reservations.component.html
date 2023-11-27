@@ -65,6 +65,7 @@
           <option value="20">20 or more</option>
         </select>
 
+        <div class="form2">
         <p>
           Filter by minimum price: <input type="text" name="MinPrice" [(ngModel)]="filters.minPrice" />
         </p>
@@ -80,7 +81,7 @@
         <p>
           Filter by End Date: <input type="date" name="EndDate" [(ngModel)]="filters.endDate" />
         </p>
-
+        </div>
       </div>
       <button type="submit" class="buttonStyle">Apply Filter</button>
 

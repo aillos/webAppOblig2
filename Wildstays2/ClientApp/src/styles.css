@@ -315,4 +315,17 @@ label[for="toggleFilterBtnCheckbox"] {
   width:100%;
 }
 
+.form-control{
+  width:370px;
+  margin-bottom:10px;
+}
 
+.form2{
+  position: relative;
+  margin-left:400px;
+  margin-top: -190px;
+}
+
+.form2 > p{
+  margin-bottom:20px;
+}

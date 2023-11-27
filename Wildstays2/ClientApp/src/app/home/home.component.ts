@@ -101,17 +101,20 @@ export class HomeComponent implements OnInit {
 
   private handleDateSelect(selectInfo: { startStr: string, endStr: string, start: Date, end: Date }): void {
     const startDate = new Date(selectInfo.startStr);
-    const currentDate = new Date();
+    const endDate = new Date(selectInfo.endStr);
 
+    const currentDate = new Date();
     currentDate.setHours(0, 0, 0, 0);
 
     if (startDate < currentDate) {
       alert('The selected start date is in the past.');
     } else {
       this.startDate = selectInfo.startStr;
-      this.endDate = selectInfo.endStr;
+      endDate.setDate(endDate.getDate() - 1);
+      this.endDate = endDate.toISOString().split('T')[0];
     }
   }
+
 
 
   public onSearch(){}
