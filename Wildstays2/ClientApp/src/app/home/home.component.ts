@@ -59,8 +59,7 @@ export class HomeComponent implements OnInit {
       select: this.handleDateSelect.bind(this),
       nowIndicator: true,
       events: [],
-      weekNumberCalculation: 'ISO',
-      contentHeight: 500
+      weekNumberCalculation: 'ISO'
     };
   }
 

@@ -83,6 +83,10 @@ body {
   height: 20px;
 }
 /*Calendar styling*/
+.fc-event-title{
+  font-weight: bold;
+}
+
 #calendar {
   width: 400px;
   height: 300px;
@@ -284,6 +288,7 @@ label[for="toggleFilterBtnCheckbox"] {
   justify-content:center;
 }
 
+/*Slideshow styling*/
 .slideshow{
   width:825px;
   margin: auto;
@@ -306,9 +311,4 @@ label[for="toggleFilterBtnCheckbox"] {
   width:100%;
 }
 
-.fc-event-title{
-  font-weight: bold;
-}
-.fc-event-title{
-  font-weight: bold;
-}
+

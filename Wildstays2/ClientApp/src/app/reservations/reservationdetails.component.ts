@@ -32,16 +32,18 @@ export class ReservationdetailsComponent {
     this._route.params.subscribe(params => {
       this.id = +params['id'];
       this.loadItem(this.id);
+      this.initializeCalendar();
+      this.loadReservations();
     });
-    this.initializeCalendar();
-    this.loadReservations();
+    setTimeout(() => {
+      this.updateCalendarEvents();
+    },  200);
   }
 
   private loadReservations(): void {
     this._reservationService.getReservationsByListingId(35).subscribe(data => {
       this.bookedReservation = data;
       console.log('Updated bookedReservation:', this.bookedReservation);
-      this.updateCalendarEvents();
     }, error => {
       console.error('Error fetching reservations:', error);
     });
@@ -50,7 +52,6 @@ export class ReservationdetailsComponent {
 
 
   public updateCalendarEvents(): void {
-    console.log("Updated")
     const events = this.transformToEvents();
 
     if (this.calendarComponent && this.calendarComponent.getApi()) {
@@ -63,7 +64,6 @@ export class ReservationdetailsComponent {
 
 
   public transformToEvents(): any[] {
-    console.log("Transformed")
     return this.bookedReservation.map(reservations => {
       let endDate = new Date(reservations.EndDate);
       endDate = new Date(endDate.setDate(endDate.getDate() + 1));
@@ -101,6 +101,7 @@ export class ReservationdetailsComponent {
       select: this.handleDateSelect.bind(this),
       nowIndicator: true,
       events: [],
+      weekNumberCalculation: 'ISO',
       eventDidMount: function (info: EventMountArg) {
         if (info.event.display === 'background') {
           info.el.style.opacity = '0.8';
