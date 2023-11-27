@@ -1,5 +1,94 @@
-<h1>Listings of available housing</h1>
+<label class="switch">
+  <input type="checkbox" id="toggleFilterBtnCheckbox" (change)="toggleFilterForm()">
+  <span class="slider round"></span>
+</label>
+<label for="toggleFilterBtnCheckbox">Toggle Filter</label>
+<div id="filterFormContainer" [style.display]="isFilterFormVisible ? 'block' : 'none'">
+  <form (ngSubmit)="applyFilters()" #filterForm="ngForm">
+    <form (ngSubmit)="applyFilters()" #filterForm="ngForm">
+      <div class="form-group">
+        <label for="placeFilter">Filter by Place:</label>
+        <select name="Place" class="form-control" [(ngModel)]="filters.place">
+          <option value="">All</option>
+          <option value="Oslo">Oslo</option>
+          <option value="Bergen">Bergen</option>
+          <option value="Trondheim">Trondheim</option>
+        </select>
 
+        <label for="AmountBedrooms">Filter by Number of Bedrooms:</label>
+        <select name="AmountBedrooms" class="form-control" [(ngModel)]="filters.amountBedrooms">
+          <option value="0">All</option>
+          <option value="1">1 or more</option>
+          <option value="2">2 or more</option>
+          <option value="3">3 or more</option>
+          <option value="4">4 or more</option>
+          <option value="5">5 or more</option>
+          <option value="6">6 or more</option>
+          <option value="7">7 or more</option>
+          <option value="8">8 or more</option>
+          <option value="9">9 or more</option>
+          <option value="10">10 or more</option>
+          <option value="11">11 or more</option>
+          <option value="12">12 or more</option>
+          <option value="13">13 or more</option>
+          <option value="14">14 or more</option>
+          <option value="15">15 or more</option>
+          <option value="16">16 or more</option>
+          <option value="17">17 or more</option>
+          <option value="18">18 or more</option>
+          <option value="19">19 or more</option>
+          <option value="20">20 or more</option>
+        </select>
+        
+        <label for="AmountBathrooms">Filter by Number of Bathrooms:</label>
+        <select name="AmountBathrooms" class="form-control" [(ngModel)]="filters.amountBathrooms">
+          <option value="0">All</option>
+          <option value="1">1 or more</option>
+          <option value="2">2 or more</option>
+          <option value="3">3 or more</option>
+          <option value="4">4 or more</option>
+          <option value="5">5 or more</option>
+          <option value="6">6 or more</option>
+          <option value="7">7 or more</option>
+          <option value="8">8 or more</option>
+          <option value="9">9 or more</option>
+          <option value="10">10 or more</option>
+          <option value="11">11 or more</option>
+          <option value="12">12 or more</option>
+          <option value="13">13 or more</option>
+          <option value="14">14 or more</option>
+          <option value="15">15 or more</option>
+          <option value="16">16 or more</option>
+          <option value="17">17 or more</option>
+          <option value="18">18 or more</option>
+          <option value="19">19 or more</option>
+          <option value="20">20 or more</option>
+        </select>
+
+        <p>
+          Filter by minimum price: <input type="text" name="MinPrice" [(ngModel)]="filters.minPrice" />
+        </p>
+        
+        <p>
+          Filter by maximum price: <input type="text" name="MaxPrice" [(ngModel)]="filters.maxPrice" />
+        </p>
+        
+        <p>
+          Filter by Start Date: <input type="date" name="StartDate" [(ngModel)]="filters.startDate" />
+        </p>
+        
+        <p>
+          Filter by End Date: <input type="date" name="EndDate" [(ngModel)]="filters.endDate" />
+        </p>
+      
+      </div>
+      <button type="submit" class="buttonStyle">Apply Filter</button>
+
+    </form>
+  </form>
+</div>
+
+<!-- List of Reservations -->
 <div class="row">
   <div *ngFor="let reservation of reservations" class="col">
     <div class="card">
