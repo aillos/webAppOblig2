@@ -14,10 +14,6 @@ export class ReservationService {
 
   constructor(private _http: HttpClient) { }
 
-  getReservations(): Observable<RReservation[]> {
-    return this._http.get<RReservation[]>(this.baseUrl);
-  }
-  
     getFilteredReservations(filterOptions: any): Observable<RReservation[]> {
     let params = new HttpParams();
 
@@ -42,10 +38,12 @@ export class ReservationService {
     return this._http.get<RReservation[]>(`${this.baseUrl}/index`, { params });
   }
 
+  getIndexListings(): Observable<RReservation[]> {
+    return this._http.get<RReservation[]>(`${this.baseUrl}/index`);
+  }
 
-  getReservationById(Id: number): Observable<any> {
-    const url = `${this.baseUrl}/${Id}`;
-    return this._http.get(url);
+  getListingDetails(id: number): Observable<any> {
+    return this._http.get(`${this.baseUrl}/details/${id}`);
   }
 
   getReservationsByListingId(Id: number): Observable<BookedReservations[]> {

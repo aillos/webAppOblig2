@@ -31,7 +31,7 @@ import {NgOptimizedImage} from "@angular/common";
             {path: '', component: HomeComponent, pathMatch: 'full'},
             {path: 'reservations', component: ReservationsComponent},
             {path: 'reservationdetails', component: ReservationdetailsComponent},
-            {path: 'reservationdetails/:id', component: ReservationdetailsComponent},
+            {path: 'reservations/details/:id', component: ReservationdetailsComponent },
         ]),
         NgOptimizedImage
     ],

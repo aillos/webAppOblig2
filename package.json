@@ -2,6 +2,7 @@
   "dependencies": {
     "@fullcalendar/angular": "^6.1.9",
     "@fullcalendar/daygrid": "^6.1.9",
-    "@fullcalendar/interaction": "^6.1.9"
+    "@fullcalendar/interaction": "^6.1.9",
+    "angular-responsive-carousel": "^2.1.2"
   }
 }

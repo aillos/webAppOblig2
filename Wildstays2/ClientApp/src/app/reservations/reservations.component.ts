@@ -25,7 +25,7 @@ export class ReservationsComponent implements OnInit {
 
   ngOnInit(): void {
     // Initial load of reservations
-    this.loadReservations();
+    this.getIndexListings();
     this.route.queryParams.subscribe(params => {
       this.filters.place = params['searchTerm'] || '';
       this.filters.startDate = params['startDate'] || '';
@@ -35,15 +35,11 @@ export class ReservationsComponent implements OnInit {
     });
   }
 
-  loadReservations() {
-    this._reservationService.getReservations().subscribe(
-      (data: any) => {
+  getIndexListings(): void {
+    this._reservationService.getIndexListings()
+      .subscribe(data => {
         this.reservations = data;
-      },
-      error => {
-        console.error('Error fetching reservations:', error);
-      }
-    );
+      });
   }
   // Initialize isFilterFormVisible to false in your component
 

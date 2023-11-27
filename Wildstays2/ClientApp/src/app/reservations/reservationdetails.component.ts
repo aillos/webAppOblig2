@@ -31,7 +31,7 @@ export class ReservationdetailsComponent {
   ngOnInit(): void {
     this._route.params.subscribe(params => {
       this.id = +params['id'];
-      this.loadItem(this.id);
+      this.getDetails(this.id);
       this.initializeCalendar();
       this.loadReservations();
     });
@@ -79,16 +79,11 @@ export class ReservationdetailsComponent {
 
   }
 
-  loadItem(id: number) {
-    this._reservationService.getReservationById(id)
-      .subscribe(
-        (data: any) => {
-          this.reservation = data;
-        },
-        error => {
-          console.error('Error fetching reservation:', error);
-        }
-      );
+  getDetails(id: number): void {
+    this._reservationService.getListingDetails(id)
+      .subscribe(data => {
+        this.reservation = data;
+      });
   }
 
   private initializeCalendar(): void {

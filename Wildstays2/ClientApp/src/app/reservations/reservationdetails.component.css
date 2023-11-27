@@ -1,2 +1,4 @@
-﻿body {
+﻿.row {
+  background-color: #DAAD86;
+  outline: 1px solid black;
 }
