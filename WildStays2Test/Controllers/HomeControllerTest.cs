@@ -46,6 +46,10 @@ public class HomeControllerTest
         // Assert
         var okResult = Assert.IsType<OkObjectResult>(result).Value;
         var model = Assert.IsAssignableFrom<IEnumerable<Reservation>>(okResult);
+        
+        // Checks if the number of listings is correct
         Assert.Equal(2, model.Count());
+        // Checks if the place in the second value is correct
+        Assert.Equal("Trondheim", model.ElementAt(1).Place);
     }
 }
