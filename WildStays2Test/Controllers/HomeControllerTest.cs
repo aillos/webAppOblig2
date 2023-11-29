@@ -9,7 +9,8 @@ namespace WildStays2Test.Controllers;
 public class HomeControllerTest
 {
     
-    // Test below checks the GetReservations() method in the HomeController and ensures that it returns the correct number of listings.
+    // Test below checks the GetReservations() method in the HomeController and ensures that it
+    // returns the correct number of listings, as well as the correct place for the second listing.
     [Fact]
     public async Task TestGetReservations()
     {
