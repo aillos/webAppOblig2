@@ -9,7 +9,8 @@ namespace WildStays2Test.Controllers;
 public class HomeControllerTest
 {
     
-    // Test below checks the GetReservations() method in the HomeController and ensures that it returns the correct number of listings.
+    // Test below checks the GetReservations() method in the HomeController and ensures that it
+    // returns the correct number of listings, as well as the correct place for the second listing.
     [Fact]
     public async Task TestGetReservations()
     {
@@ -46,6 +47,10 @@ public class HomeControllerTest
         // Assert
         var okResult = Assert.IsType<OkObjectResult>(result).Value;
         var model = Assert.IsAssignableFrom<IEnumerable<Reservation>>(okResult);
+        
+        // Checks if the number of listings is correct
         Assert.Equal(2, model.Count());
+        // Checks if the place in the second value is correct
+        Assert.Equal("Trondheim", model.ElementAt(1).Place);
     }
 }

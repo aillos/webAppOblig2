@@ -85,7 +85,7 @@ export class ReservationdetailsComponent {
       endDate = new Date(endDate.setDate(endDate.getDate() + 1));
 
       return {
-        title:"BOOKED",
+        title: "BOOKED",
         start: new Date(reservations.StartDate).toISOString().split('T')[0],
         end: endDate.toISOString().split('T')[0],
         display: 'background',
