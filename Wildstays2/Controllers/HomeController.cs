@@ -15,6 +15,7 @@
             _itemRepository = itemRepository;
         }
 
+        //Getting all reservations
         [HttpGet("reservations")]
         public async Task<IActionResult> GetReservations()
         {
@@ -22,6 +23,7 @@
             return Ok(reservations);
         }
         
+        //Getting all images
         [HttpGet("images")]
         public async Task<IActionResult> GetImages()
         {

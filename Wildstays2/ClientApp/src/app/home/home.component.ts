@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   constructor(private reservationService: ReservationService, private _router:Router) {
   }
 
+  //Sending us to reservations with filters in place
   navigateToReservations(){
     this._router.navigate(['/reservations'], {
     queryParams: {
@@ -33,16 +34,17 @@ export class HomeComponent implements OnInit {
     }
     });
   }
+  //Loading in reservations and updating the calendar events to reflect current reservations
   private loadReservations(): void {
     this.reservationService.getReservations().subscribe(data => {
       this.reservations = data;
       this.updateCalendarEvents();
     });
   }
+  //Loading images for use in the image carousel
   private loadImages(): void {
     this.reservationService.getImages().subscribe(data => {
       this.images = data.map(img => ({ path: img.FilePath }));
-      console.log(this.images);
     });
 
   }
@@ -53,7 +55,7 @@ export class HomeComponent implements OnInit {
     this.initializeCalendar();
   }
 
-
+  //Settings for the calendar
   private initializeCalendar(): void {
     this.calendarOptions = {
       plugins: [interactionPlugin, dayGridPlugin],
@@ -69,6 +71,7 @@ export class HomeComponent implements OnInit {
     };
   }
 
+  //Updating calendar events and filtering by the "searchTerm"
   public updateCalendarEvents(): void {
     const events = this.searchTerm
       ? this.transformToEvents().filter(event => event.place.toLowerCase() === this.searchTerm.toLowerCase())
@@ -81,14 +84,14 @@ export class HomeComponent implements OnInit {
     }
   }
 
-
+  //Transforming the reservations to use for events, Also adding background color to indicate reservation on said dates.
   public transformToEvents(): any[] {
     return this.reservations.map(reservation => {
       let endDate = new Date(reservation.EndDate);
       endDate = new Date(endDate.setDate(endDate.getDate() + 1));
 
       return {
-        //title: "Listing: " + reservation.ListingId,
+        //title: "Listing: " + reservation.ListingId, - OPTIONAL
         start: new Date(reservation.StartDate).toISOString().split('T')[0],
         end: endDate.toISOString().split('T')[0],
         display: 'background',

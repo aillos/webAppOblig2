@@ -43,6 +43,7 @@ export class ReservationdetailsComponent {
     },  200);
   }
 
+  //Loading current reservations for the listingId
   private loadReservations(): void {
     this._reservationService.getReservationsByListingId(this.id).subscribe(data => {
       this.bookedReservation = data;
@@ -52,6 +53,7 @@ export class ReservationdetailsComponent {
     });
   }
 
+  //Loading images corresponding with listingId
   private loadImages(): void{
     this._reservationService.getImagesById(this.id).subscribe(data => {
       this.images = data.map(img => ({ path: img.FilePath }));
@@ -60,7 +62,7 @@ export class ReservationdetailsComponent {
   }
 
 
-
+  //Updating calendar to include events
   public updateCalendarEvents(): void {
     const events = this.transformToEvents();
 
@@ -72,7 +74,7 @@ export class ReservationdetailsComponent {
   }
 
 
-
+  //Transforming reservation to event
   public transformToEvents(): any[] {
     return this.bookedReservation.map(reservations => {
       let endDate = new Date(reservations.EndDate);
@@ -89,6 +91,7 @@ export class ReservationdetailsComponent {
 
   }
 
+  //Getting the details for listing
   getDetails(id: number): void {
     this._reservationService.getListingDetails(id)
       .subscribe(data => {
@@ -100,6 +103,7 @@ export class ReservationdetailsComponent {
     this._router.navigate(['/reservations']);
   }
 
+  //Calendar settings, background color is darker here as it only needs to indicate one reservation instead of many
   private initializeCalendar(): void {
     this.calendarOptions = {
       plugins: [interactionPlugin, dayGridPlugin],
@@ -119,7 +123,7 @@ export class ReservationdetailsComponent {
     };
   }
 
-
+  //Handling data select for calendar
   private handleDateSelect(selectInfo: { startStr: string, endStr: string, start: Date, end: Date }): void {
     const startDate = new Date(selectInfo.startStr);
     const endDate = new Date(selectInfo.endStr);

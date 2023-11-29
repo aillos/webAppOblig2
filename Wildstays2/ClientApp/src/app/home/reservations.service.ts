@@ -14,10 +14,12 @@ export class ReservationService {
 
   constructor(private _http: HttpClient) { }
 
+  //Getting all reservations
   getReservations(): Observable<RReservation[]> {
     return this._http.get<RReservation[]>(this.baseUrl);
   }
 
+  //Getting all images
   getImages(): Observable<IImages[]> {
     return this._http.get<IImages[]>('api/home/images');
   }

@@ -43,19 +43,23 @@ export class ReservationService {
     return this._http.get<RReservation[]>(`${this.baseUrl}/index`, { params });
   }
 
+  //Getting all listings
   getIndexListings(): Observable<RReservation[]> {
     return this._http.get<RReservation[]>(`${this.baseUrl}/index`);
   }
 
+  //Getting details about listing
   getListingDetails(id: number): Observable<any> {
     return this._http.get(`${this.baseUrl}/details/${id}`);
   }
 
+  //Getting reservations by ListingId
   getReservationsByListingId(Id: number): Observable<BookedReservations[]> {
     const url = `${this.baseUrl}/res/${Id}`;
     return this._http.get<BookedReservations[]>(url);
   }
 
+  //Getting images based on listingId
   getImagesById(Id: number): Observable<IImages[]> {
     const url = `${this.baseUrl}/images/${Id}`;
     return this._http.get<IImages[]>(url);
