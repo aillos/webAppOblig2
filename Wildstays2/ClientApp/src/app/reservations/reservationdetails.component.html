@@ -1,64 +1,65 @@
 <button class="btn btn-danger" (click)="navigateToReservations()">Back to reservations</button>
 
 <div class="text-center">
-  <h1>{{ reservation.Name }}</h1>
+  <h1>{{ reservation?.Name }}</h1>
 </div>
+<div class="reservationDetails">
 <div class="flex-container">
 <div class="leftRow">
 <div class="row row2">
   <div class="col col2">
     <h5>PRICE PER NIGHT:</h5>
-    <p>{{ reservation.Price | convertToCurrency: 'kr.' }}</p>
+    <p>{{ reservation?.Price | convertToCurrency: 'kr.' }}</p>
   </div>
   <div class="col col2">
     <h5>LOCATION:</h5>
-    <p>{{ reservation.Place }}</p>
+    <p>{{ reservation?.Place }}</p>
   </div>
   <div class="col col2">
     <h5>TYPE:</h5>
-    <p>{{ reservation.Type }}</p>
+    <p>{{ reservation?.Type }}</p>
   </div>
   <div class="col col2">
     <h5>GUESTS:</h5>
-    <p>{{ reservation.Guests }}</p>
+    <p>{{ reservation?.Guests }}</p>
   </div>
   <div class="col col2">
     <h5>BEDROOMS:</h5>
-    <p>{{ reservation.Bedrooms }}</p>
+    <p>{{ reservation?.Bedrooms }}</p>
   </div>
   <div class="col col2">
     <h5>BATHROOMS:</h5>
-    <p>{{ reservation.Bathrooms }}</p>
+    <p>{{ reservation?.Bathrooms }}</p>
   </div>
 </div>
 </div>
 <div class="rightRow">
 <!-- Slideshow -->
-  <div class="slideshow2  ">
-    <carousel
-      [images]="images"
-      [loop]="true"
-      [autoplay]="true"
-      [pauseOnHover]="true"
-      transitionTimingFunction="linear"
-      [transitionDuration]="350">
-    </carousel>
+  <div class="slideshow2">
+    <ng-image-slider
+      [images]="imageObjects"
+      [imageSize]="{width: '225px', height: '225px'}"
+      style="margin:auto;">
+    </ng-image-slider>
   </div>
 <div class="row row2" id="descriptionRow">
   <h5>DESCRIPTION:</h5>
-  <p>{{ reservation.Description }}</p>
+  <p>{{ reservation?.Description }}</p>
 </div>
 </div>
 
 </div>
 <!-- Dates selected for calendar with submit -->
-<div id="calendarForm">
-<div id="dates2">
-  Selected: {{ startDate }} to {{ endDate }}
+  <div id="calendarandForm">
+  <full-calendar #calendar2 [options]="calendarOptions" id="calendar2"></full-calendar>
+  <div id="calendarForm">
+    <div id="dates2">
+      Selected: {{ startDate }} to {{ endDate }}
+    </div>
+    <div class="buttonStyle" style="margin:auto">
+      Submit
+    </div>
+  </div>
+  </div>
 </div>
-<div class="buttonStyle" style="margin:auto">
-  Submit
-</div>
-</div>
-<full-calendar #calendar2 [options]="calendarOptions" id="calendar2"></full-calendar>
 

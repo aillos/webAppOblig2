@@ -104,7 +104,7 @@ body {
   border: 2px solid #111;
   border-radius: 2%;
   background-color: #E8E3F8;
-  margin: 10px auto -40px;
+  margin-left:10px;
 }
 
 
@@ -305,20 +305,28 @@ label[for="toggleFilterBtnCheckbox"] {
 
 /*Slideshow styling*/
 .slideshow{
-  width:825px;
+  width:600px;
   margin: auto;
 }
 
 .slideshow2{
-  width:195px;
-  margin: auto auto 10px 5px;
-}
-.slideshow2 > img {
-  height:195px;
-  width:195px;
+  width:230px;
+  margin-bottom:4px;
+  margin-left:5px;
+  margin-right:10px;
 }
 
-.slideshow > img, slideshow2 > img{
+.slideshow3{
+  width:160px;
+  margin: auto auto 3px;
+}
+.slideshow2 > img {
+  height:240px;
+  width:240px;
+  object-fit: cover;
+}
+
+.slideshow > img {
   height:200px;
   width:200px;
   object-fit: cover;
@@ -353,17 +361,27 @@ label[for="toggleFilterBtnCheckbox"] {
 }
 
 @media (min-width: 768px) {
+  .reservationDetails{
+    width:900px;
+    margin: 20px auto auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height:600px;
+  }
+
   .flex-container {
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
     flex-wrap: wrap;
-    width:400px;
-    margin: 15px auto auto;
+    width:450px;
   }
 
   .leftRow, .rightRow {
     flex: 1;
+    height:100px;
   }
 
 
@@ -376,15 +394,48 @@ label[for="toggleFilterBtnCheckbox"] {
   }
   .col2{
     width:195px;
-    margin-bottom:-15px;
+    margin-bottom:-10px;
   }
   .col2 > p, .row2 > p {
     width:195px;
-    margin-top:-10px;
+    margin-top:-5px;
   }
 
   #descriptionRow{
     margin-left: 6px;
-    height:77px;
+    height:107px;
+    width:230px;
+  }
+}
+
+@media(max-width: 500px){
+  .slideshow2{
+    margin: 10px auto;
+  }
+  .leftRow{
+    width:90%;
+    margin:auto;
+  }
+
+  #descriptionRow{
+    height:107px;
+    width:90%;
+    margin:auto;
+  }
+
+  #calendar2{
+    width:90%;
+    margin: 10px auto auto;
+  }
+
+  #calendarForm{
+    width:90%;
+    margin:10px auto;
+  }
+
+  .text-center{
+    margin-top:10px;
+    margin-bottom:15px;
+
   }
 }

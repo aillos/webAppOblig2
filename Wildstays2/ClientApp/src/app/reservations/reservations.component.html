@@ -5,10 +5,9 @@
 <label for="toggleFilterBtnCheckbox" id="toggleLabel">Toggle Filter</label>
 <div id="filterFormContainer" [style.display]="isFilterFormVisible ? 'block' : 'none'">
   <form (ngSubmit)="applyFilters()" #filterForm="ngForm">
-    <form (ngSubmit)="applyFilters()" #filterForm="ngForm">
       <div class="form-group">
         <label for="placeFilter">Filter by Place:</label>
-        <select name="Place" class="form-control" [(ngModel)]="filters.place">
+        <select id="placeFilter" name="Place" class="form-control" [(ngModel)]="filters.place">
           <option value="">All</option>
           <option value="Oslo">Oslo</option>
           <option value="Bergen">Bergen</option>
@@ -16,7 +15,7 @@
         </select>
 
         <label for="AmountGuests">Filter by Number of Guests:</label>
-        <select name="AmountGuests" class="form-control" [(ngModel)]="filters.amountGuests">
+        <select id="AmountGuests" name="AmountGuests" class="form-control" [(ngModel)]="filters.amountGuests">
           <option value="0">All</option>
           <option value="1">1 or more</option>
           <option value="2">2 or more</option>
@@ -41,7 +40,7 @@
         </select>
 
         <label for="AmountBedrooms">Filter by Number of Bedrooms:</label>
-        <select name="AmountBedrooms" class="form-control" [(ngModel)]="filters.amountBedrooms">
+        <select id="AmountBedrooms" name="AmountBedrooms" class="form-control" [(ngModel)]="filters.amountBedrooms">
           <option value="0">All</option>
           <option value="1">1 or more</option>
           <option value="2">2 or more</option>
@@ -66,7 +65,7 @@
         </select>
 
         <label for="AmountBathrooms">Filter by Number of Bathrooms:</label>
-        <select name="AmountBathrooms" class="form-control" [(ngModel)]="filters.amountBathrooms">
+        <select id="AmountBathrooms" name="AmountBathrooms" class="form-control" [(ngModel)]="filters.amountBathrooms">
           <option value="0">All</option>
           <option value="1">1 or more</option>
           <option value="2">2 or more</option>
@@ -111,7 +110,6 @@
       <button type="submit" class="buttonStyle">Apply Filter</button>
 
     </form>
-  </form>
 </div>
 
 <!-- List of Reservations -->
@@ -122,6 +120,13 @@
         <div class="text-center">
           <h3>{{ reservation.Name }}</h3>
         </div>
+      </div>
+      <div class="slideshow3">
+        <ng-image-slider
+          [images]="reservation.images"
+          [lazyLoading]="true"
+          [imageSize]="{width: '150px', height: '150px'}">
+        </ng-image-slider>
       </div>
       <div>
         <div class="text-left">

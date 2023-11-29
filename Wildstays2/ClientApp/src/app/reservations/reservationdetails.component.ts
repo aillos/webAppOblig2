@@ -18,7 +18,7 @@ export class ReservationdetailsComponent {
 
   id: number = 0;
   reservation: any;
-  public images: { path: string }[] = [];
+  public imageObjects: Array<object> = [];
   public calendarOptions: any;
   public startDate: string = '';
   public endDate: string = '';
@@ -56,9 +56,13 @@ export class ReservationdetailsComponent {
   //Loading images corresponding with listingId
   private loadImages(): void{
     this._reservationService.getImagesById(this.id).subscribe(data => {
-      this.images = data.map(img => ({ path: img.FilePath }));
+        this.imageObjects = data.map(img => ({
+          image: img.FilePath,
+          thumbImage: img.FilePath,
+          title: img.ListingId,
+          alt: img.ListingId
+        }));
     });
-    console.log(this.images);
   }
 
 
@@ -139,4 +143,6 @@ export class ReservationdetailsComponent {
       this.endDate = endDate.toISOString().split('T')[0];
     }
   }
+
+  protected readonly Image = Image;
 }

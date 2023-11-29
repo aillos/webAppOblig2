@@ -32,14 +32,7 @@
   <!-- Slideshow -->
   <div class="slideshowBackground">
   <div class="slideshow">
-    <carousel
-      [images]="images"
-      [loop]="true"
-      [autoplay]="true"
-      [pauseOnHover]="true"
-      transitionTimingFunction="linear"
-      [transitionDuration]="350">
-    </carousel>
+    <ng-image-slider [images]="imageObjects" [infinite]="true" #nav></ng-image-slider>
   </div>
   </div>
   <!-- Divider for whitespace -->

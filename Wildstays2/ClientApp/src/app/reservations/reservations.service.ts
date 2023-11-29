@@ -65,5 +65,9 @@ export class ReservationService {
     return this._http.get<IImages[]>(url);
   }
 
+  getImages(): Observable<IImages[]> {
+    return this._http.get<IImages[]>('api/home/images');
+  }
+
 
 }

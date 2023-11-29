@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   public endDate: string = '';
   public calendarOptions: any;
   public reservations: RReservation[] = [];
-  public images: { path: string }[] = [];
+  public imageObjects: Array<object> = [];
 
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
 
@@ -44,9 +44,13 @@ export class HomeComponent implements OnInit {
   //Loading images for use in the image carousel
   private loadImages(): void {
     this.reservationService.getImages().subscribe(data => {
-      this.images = data.map(img => ({ path: img.FilePath }));
+      this.imageObjects = data.map(img => ({
+        image: img.FilePath,
+        thumbImage: img.FilePath,
+        title: img.ListingId,
+        alt: img.ListingId
+      }));
     });
-
   }
 
   ngOnInit(): void {

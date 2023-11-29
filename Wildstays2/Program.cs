@@ -23,6 +23,7 @@ builder.Services.AddDbContext<DatabaseDbContext>(options =>
     options.UseSqlite(connectionString); // Ensure you're using the correct connection string
 });
 
+
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<DatabaseDbContext>()
     .AddDefaultTokenProviders();
@@ -49,6 +50,20 @@ var logger = loggerConfiguration.CreateLogger();
 builder.Logging.AddSerilog(logger);
 
 var app = builder.Build();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.WithOrigins("api") // Replace with your Angular app's URL
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
+// And in the Configure method:
+app.UseCors();
 
 if (app.Environment.IsDevelopment())
 {

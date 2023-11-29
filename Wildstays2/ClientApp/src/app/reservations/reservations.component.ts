@@ -8,10 +8,12 @@ import {ActivatedRoute} from "@angular/router";
   templateUrl: './reservations.component.html',
   styleUrls: ['./reservations.component.css']
 })
+
 export class ReservationsComponent implements OnInit {
   reservations: any[] = [];
   filters: any = {}; // Object to store filter values
   isFilterFormVisible = false; // Set it to false by default
+  public imageObjects: Array<object> = [];
 
   constructor(
     private _reservationService: ReservationService,
@@ -34,11 +36,21 @@ export class ReservationsComponent implements OnInit {
   }
 
   getIndexListings(): void {
-    this._reservationService.getIndexListings()
-      .subscribe(data => {
-        this.reservations = data;
+    this._reservationService.getIndexListings().subscribe(data => {
+      this.reservations = data;
+      this.reservations.forEach(reservation => {
+        this.loadImagesForReservation(reservation);
+        console.log(this.reservations);
       });
+    });
   }
+
+  private loadImagesForReservation(reservation: any): void {
+    this._reservationService.getImagesById(reservation.Id).subscribe(images => {
+      reservation.images = images.map(img => ({ path: img.FilePath }));
+    });
+  }
+
   // Initialize isFilterFormVisible to false in your component
 
 
