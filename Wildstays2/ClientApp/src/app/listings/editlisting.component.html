@@ -1,0 +1,84 @@
+﻿<div class="container">
+  <h1>Edit Listing</h1>
+  <form (ngSubmit)="onSubmit()" class="row">
+    <div class="col-md-4">
+      <!-- Form fields for listing details -->
+      <div class="form-group">
+        <label class="control-label">Name</label>
+        <input type="text" [(ngModel)]="listing.name" name="name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="control-label">Place</label>
+        <select [(ngModel)]="listing.place" name="name" class="form-control" >
+          <option value="Oslo">Oslo</option>
+          <option value="Bergen">Bergen</option>
+          <option value="Trondheim">Trondheim</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Description</label>
+        <input type="text" [(ngModel)]="listing.description" name="name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="control-label">Type</label>
+        <select [(ngModel)]="listing.type" name="name" class="form-control" >
+          <option value="House">House</option>
+          <option value="Apartment">Apartment</option>
+          <option value="Cabin">Cabin</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Price</label>
+        <input type="number" [(ngModel)]="listing.price" name="name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="control-label">Guests</label>
+        <input type="number" [(ngModel)]="listing.guests" name="name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="control-label">Bedrooms</label>
+        <input type="number" [(ngModel)]="listing.bedrooms" name="name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="control-label">Bathrooms</label>
+        <input type="number" [(ngModel)]="listing.bathrooms" name="name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="control-label">Start Date</label>
+        <input type="date" [(ngModel)]="listing.startDate" name="name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="control-label">End Date</label>
+        <input type="date" [(ngModel)]="listing.endDate" name="name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="control-label">Images</label>
+        <!-- Removed ngModel from file input -->
+        <input type="file" name="images" multiple class="form-control" accept="image/*" (change)="handleImageChange($event)" />
+      </div>
+
+      <!-- Dynamic image upload inputs -->
+      <div class="form-group" *ngFor="let imageInput of imageInputs; let i = index">
+        <label>Images</label>
+        <input type="file" (change)="handleImageChange($event, i)" name="imageInput{{i}}" class="form-control" multiple accept="image/*" />
+      </div>
+      <button type="button" (click)="addImageInput()" class="btn btn-primary">Add More Images</button>
+
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+  </form>
+
+  <!-- Existing images -->
+  <div class="image-container">
+    <div *ngFor="let image of images">
+      <img [src]="image.FilePath" alt="Image" class="img-thumbnail" />
+      <button (click)="deleteImage(image.Id)" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+
+  <!-- Delete listing button -->
+  <button (click)="deleteListing()" class="btn btn-danger">Delete Listing</button>
+</div>
+
+<a (click)="backToList()">Back to List</a>

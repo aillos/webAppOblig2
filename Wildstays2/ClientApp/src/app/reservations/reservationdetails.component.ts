@@ -6,7 +6,6 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import {FullCalendarComponent} from "@fullcalendar/angular";
 import {BookedReservations} from "./bookedReservations";
 import {EventMountArg} from "@fullcalendar/core";
-import {Image} from "angular-responsive-carousel";
 
 @Component({
   selector: 'app-reservationdetails-component',

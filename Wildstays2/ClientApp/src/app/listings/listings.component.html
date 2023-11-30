@@ -1,0 +1,53 @@
+<h1 id="tableLabel">List of Listings ({{viewTitle}} View)</h1>
+
+<button class='btn btn-primary' (click)='getListings()'>Get Listings</button>
+
+<table class='table table-striped' aria-labelledby="tableLabel">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Place</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Price</th>
+      <th>Guests</th>
+      <th>Bedrooms</th>
+      <th>Bathrooms</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Images</th>
+      <!-- Add other columns based on the Llisting interface -->
+      <th width="180">
+        <button class='btn btn-primary' (click)='toggleImage()'>
+          {{ displayImage ? 'Hide' : 'Show' }} image
+        </button>
+      </th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let listing of listings'>
+      <td>{{ listing.id }}</td>
+      <td>{{ listing.name }}</td>
+      <td>{{ listing.place }}</td>
+      <td>{{ listing.description }}</td>
+      <td>{{ listing.type }}</td>
+      <td>{{ listing.price }}</td>
+      <td>{{ listing.guests }}</td>
+      <td>{{ listing.bedrooms }}</td>
+      <td>{{ listing.bathrooms }}</td>
+      <td>{{ listing.startDate | date }}</td>
+      <td>{{ listing.endDate | date }}</td>
+      <td>{{ listing.images }}</td>
+      <!-- Add other cells based on the Llisting interface -->
+      <td>
+        <a [routerLink]="['/listingform', 'edit', listing.id]">Update</a>
+        <a class="delete-link" (click)="deleteListing(listing)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class='btn btn-primary' [routerLink]="['/listingform', 'create', -1]">Create New listing</button>
+<button class='btn btn-secondary' [routerLink]="['/listingform']">Create New Listing</button>
+

@@ -49,8 +49,6 @@ loggerConfiguration.Filter.ByExcluding(e => e.Properties.TryGetValue("SourceCont
 var logger = loggerConfiguration.CreateLogger();
 builder.Logging.AddSerilog(logger);
 
-var app = builder.Build();
-
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
@@ -61,6 +59,9 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod();
         });
 });
+
+var app = builder.Build();
+
 
 // And in the Configure method:
 app.UseCors();

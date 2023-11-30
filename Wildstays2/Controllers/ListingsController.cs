@@ -37,24 +37,18 @@ namespace Wildstays2.Controllers
 
 
         // GET: Listings
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
 
             //If a user is not logged in
-            if (user == null)
-            {
-                return RedirectToRoute("Identity/Account/Login");
-            }
             //Gets all the listings for a user.
             var listings = await _itemRepository.GetListingsByUserId(user.Id);
             return Ok(listings);
         }
 
         // GET: Listings/Details/5
-        [Authorize]
         [HttpGet("details/{id}")]
         public async Task<IActionResult> Details(int id)
         {
@@ -64,17 +58,10 @@ namespace Wildstays2.Controllers
                 return NotFound();
             }
 
-            var user = await _userManager.GetUserAsync(User);
-            if (listing.UserId != user.Id)
-            {
-                return Forbid();
-            }
-
             return Ok(listing);
         }
 
         // GET: Listings/Create
-        [Authorize]
         public IActionResult Create()
         {
             return Ok();
@@ -82,18 +69,11 @@ namespace Wildstays2.Controllers
 
         // POST: Listings/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize]
         [HttpPost("create")]
         public async Task<IActionResult> Create(Listing listing, List<IFormFile> Images)
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.GetUserAsync(User);
-                if (user == null)
-                {
-                    return RedirectToRoute("Identity/Account/Login");
-                }
 
                 // Check if the start date is after today's date
                 if (!_itemRepository.DateCheck(listing.StartDate))
@@ -110,7 +90,6 @@ namespace Wildstays2.Controllers
                 }
 
                 //Set User Id
-                listing.UserId = user.Id;
                 // Create the listing
                 bool returnOk = await _itemRepository.Create(listing, Images);
                 if (returnOk)
@@ -123,7 +102,6 @@ namespace Wildstays2.Controllers
         }
 
         // GET: Listings/Edit/5
-        [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
             var listing = await _itemRepository.GetItemById(id);
@@ -132,19 +110,11 @@ namespace Wildstays2.Controllers
                 return NotFound();
             }
 
-            var user = await _userManager.GetUserAsync(User);
-            if (listing.UserId != user.Id)
-            {
-                return Forbid();
-            }
-
             return Ok(listing);
         }
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize]
         [HttpPut("edit/{id}")]
         public async Task<IActionResult> Edit(int id, Listing listing, List<IFormFile> Images, int? deleteImage, string submit)
         {
@@ -154,12 +124,11 @@ namespace Wildstays2.Controllers
                 _logger.LogWarning("Wrong ID: {ListingId}. Returning NotFound.", id);
                 return NotFound();
             }
-
-            var user = await _userManager.GetUserAsync(User);
+            
             //Gets the listings by the listing.id
             var existingListing = await _itemRepository.GetItemById(listing.Id);
 
-            if (existingListing == null || existingListing.UserId != user.Id)
+            if (existingListing == null)
             {
                 _logger.LogWarning("This listing is not available listing ID: {ListingId}. Returning Forbid.", id);
                 return Forbid();
@@ -179,7 +148,6 @@ namespace Wildstays2.Controllers
                 {
 
                     // Update the UserId so that it matches.
-                    listing.UserId = user.Id;
 
                     var result = await _itemRepository.Update(existingListing, listing, Images, null); // Pass null for imageToDeleteId
 
@@ -204,21 +172,13 @@ namespace Wildstays2.Controllers
 
 
 
-
-        // GET: Listings/Delete/5
-        [Authorize]
+        
         public async Task<IActionResult> Delete(int id)
         {
             var listing = await _itemRepository.GetItemById(id);
             if (listing == null)
             {
                 return NotFound();
-            }
-
-            var user = await _userManager.GetUserAsync(User);
-            if (listing.UserId != user.Id)
-            {
-                return Forbid();
             }
 
             return Ok(listing);
@@ -228,8 +188,6 @@ namespace Wildstays2.Controllers
 
         // POST: Listings/Delete/5
         [HttpDelete("Delete/{id}")]
-        [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -239,11 +197,6 @@ namespace Wildstays2.Controllers
             if (listing == null)
             {
                 return NotFound();
-            }
-
-            if (listing.UserId != user.Id)
-            {
-                return Forbid();
             }
 
             // Method to delete reservation
