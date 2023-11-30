@@ -3,14 +3,20 @@ using Moq;
 using Wildstays2.Controllers;
 using Wildstays2.DAL;
 using Wildstays2.Models;
-using Xunit;
-namespace WildStays2Test.Controllers;
-    
-public class HomeControllerTest
+
+namespace WildStaysTest;
+
+public class GlobalTests
 {
+    //──────────────────────────────────────//
+    //                                      //
+    //         HomeController Tests         //
+    //                                      //
+    //──────────────────────────────────────//
     
-    // Test below checks the GetReservations() method in the HomeController and ensures that it
+    // TestGetReservations checks the GetReservations() method in the HomeController and ensures that it
     // returns the correct number of listings, as well as the correct place for the second listing.
+    // This ensures that the GetReservations method is working as intended.
     [Fact]
     public async Task TestGetReservations()
     {
@@ -25,7 +31,7 @@ public class HomeControllerTest
                 EndDate = new DateTime(2023, 11, 8),
                 Place = "Oslo"
             },
-            new Reservation 
+            new Reservation
             {
                 Id = 2,
                 ListingId = 2,
@@ -41,10 +47,10 @@ public class HomeControllerTest
             
         // Act
         var result = await controller.GetReservations();
-            
+        
         // Assert
-        var okResult = Assert.IsType<OkObjectResult>(result).Value;
-        var model = Assert.IsAssignableFrom<IEnumerable<Reservation>>(okResult);
+        var objResult = Assert.IsType<OkObjectResult>(result).Value;
+        var model = Assert.IsAssignableFrom<IEnumerable<Reservation>>(objResult);
         
         // Checks if the number of listings is correct
         Assert.Equal(2, model.Count());
