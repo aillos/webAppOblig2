@@ -49,53 +49,10 @@ public class ItemRepository : IItemRepository
     }
 
     //Same method as in module 6, but added in the image logic so that users can add multiple images/pictures
-    public async Task<bool> Create(Listing listing, List<IFormFile> Images)
+    public async Task<bool> Create(Listing listing)
     {
         try
         {
-            //Makes a new list
-            var images = new List<Image>();
-
-            //Loops through for each images added
-            foreach (var imageFile in Images)
-            {
-                //Checks that there is a image
-                if (imageFile != null && imageFile.Length > 0)
-                {
-                    //Generates unique name, so that we dont have naming conflicts
-                    var fileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
-                    //Gets the path
-                    var folder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
-                    //The full path with the image name that should be stored
-                    var filePath = Path.Combine(folder, fileName);
-
-                    //Adds image to the uploads folder
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await imageFile.CopyToAsync(fileStream);
-                    }
-                    //Adds the information to the image database
-                    var image = new Image
-                    {
-                        FilePath = "/uploads/" + fileName,
-                        ListingId = listing.Id
-                    };
-
-                    images.Add(image);
-
-                    _logger.LogInformation("Image uploaded: {FilePath}, ListingId: {ListingId}", image.FilePath, image.ListingId);
-                }
-                else
-                {
-                    _logger.LogWarning("Skipped an empty image file.");
-                }
-            }
-
-            // Log the image paths in the listing
-            _logger.LogInformation("Image paths in the listing: {@ImagePaths}", images.Select(img => img.FilePath).ToList());
-
-            listing.Images = images;
-
             _db.Listings.Add(listing);
             await _db.SaveChangesAsync();
 
@@ -140,47 +97,13 @@ public class ItemRepository : IItemRepository
 
 
     //Modified the method from the module as i was getting detach issues when updating, similar to the delete method.
-    public async Task<bool> Update(Listing existingListing, Listing updatedListing, List<IFormFile> newImages, int? imageToDeleteId)
+    public async Task<bool> Update(Listing existingListing, Listing updatedListing)
     {
         try
         {
-            //If the delete button is used
-            if (imageToDeleteId.HasValue)
-            {
-                existingListing.EndDate = updatedListing.EndDate;
-                //Calls the deleteImage method
-                var imageDeleted = await DeleteImage(imageToDeleteId.Value);
-                if (!imageDeleted)
-                {
-                    return false;
-                }
-            }
 
             // Handle image upload, same as the create method
-            var imagesToAdd = new List<Image>();
-            foreach (var imageFile in newImages)
-            {
-                if (imageFile != null && imageFile.Length > 0)
-                {
-
-                    var fileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
-                    var folder = Path.Combine(_webHostEnvironment.WebRootPath, "assets");
-                    var filePath = Path.Combine(folder, fileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await imageFile.CopyToAsync(fileStream);
-                    }
-
-                    var image = new Image
-                    {
-                        FilePath = "/assets/" + fileName,
-                        ListingId = existingListing.Id
-                    };
-
-                    imagesToAdd.Add(image);
-                }
-            }
+            
 
             // Update the properties of the existing listing with the new values
             existingListing.Name = updatedListing.Name;
@@ -195,7 +118,6 @@ public class ItemRepository : IItemRepository
             existingListing.EndDate = updatedListing.EndDate;
 
             // Add new images
-            existingListing.Images.AddRange(imagesToAdd);
 
             // Save the changes to the database
             await _db.SaveChangesAsync();
@@ -254,7 +176,7 @@ public class ItemRepository : IItemRepository
         try
         {
             //Lamda expression to fetch listings with userId matching the currently logged in users Id.
-            return await _db.Listings.Where(l => l.UserId == userId).ToListAsync();
+            return await _db.Listings.ToListAsync();
         }
         catch (Exception e)
         {
@@ -270,7 +192,7 @@ public class ItemRepository : IItemRepository
         try
         {
             //Also lamda expressions to get reservations with the users userId, but also gets information from the listings database assosiated with the reservation.
-            return await _db.Reservations.Where(l => l.UserId == userId).Include(r => r.Listing).ToListAsync();
+            return await _db.Reservations.Include(r => r.Listing).ToListAsync();
         }
         catch (Exception e)
         {

@@ -1,14 +1,13 @@
 ﻿export interface Listing {
-  id: number;
-  name: string;
-  place: string;
-  description: string;
-  type: string;
-  price: number;
-  guests: number;
-  bedrooms: number;
-  bathrooms: number;
-  startDate: Date;
-  endDate: Date;
-  images: string;
+  Id: number;
+  Name: string;
+  Place: string;
+  Description: string;
+  Type: string;
+  Price: number;
+  Guests: number;
+  Bedrooms: number;
+  Bathrooms: number;
+  StartDate: Date;
+  EndDate: Date;
 }

@@ -48,9 +48,6 @@ namespace Wildstays2.Models
         [JsonPropertyName("Bathrooms")]
         public int Bathrooms { get; set; }
 
-        [JsonPropertyName("UserId")]
-        public string UserId { get; set; } = string.Empty;
-
         [Required(ErrorMessage = "Start Date is required.")]
         [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
@@ -66,13 +63,9 @@ namespace Wildstays2.Models
         public DateTime EndDate { get; set; }
         // Iput validation was not working, therefor it is in the views instead
         //The field will only show image files in your computer.
-        [Display(Name = "Images")]
-        [JsonPropertyName("Image")]
-        public ICollection<Image> Images { get; set; }
 
         public Listing()
         {
-            Images = new List<Image>();
         }
     }
 }

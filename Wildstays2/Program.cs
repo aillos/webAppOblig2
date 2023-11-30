@@ -88,10 +88,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapControllerRoute(
-    name: "ManageImages",
-    pattern: "Listings/ManageImages/{id}",
-    defaults: new { controller = "Listings", action = "ManageImages" });
 
 
 app.MapRazorPages();

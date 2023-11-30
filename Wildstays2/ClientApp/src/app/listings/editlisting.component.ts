@@ -11,7 +11,7 @@ import { IImages } from '../reservations/images';
 export class ListingEditComponent implements OnInit {
   id: number = 0;
   images: IImages[] = [];
-  imageInputs: File[] = [];
+  imageInputs!: string;
   errorMessage: string = '';
   submitted = false;
   listing!: Listing;
@@ -28,23 +28,6 @@ export class ListingEditComponent implements OnInit {
     if (this.id) {
       this.loadListing(this.id);
       this.loadImages(this.id);
-    }
-  }
-
-  addImageInput() {
-    this.imageInputs.push(new File([], ''));
-  }
-
-  handleImageChange(event: any, index?: number): void {
-    const files = event.target.files;
-    if (files) {
-      for (let file of files) {
-        if (index !== undefined) {
-          this.imageInputs[index] = file;
-        } else {
-          this.imageInputs.push(file);
-        }
-      }
     }
   }
 
@@ -85,7 +68,7 @@ export class ListingEditComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.listingService.updateListingEdit(this.id, this.listing, this.imageInputs).subscribe(() => {
+    this.listingService.updateListingEdit(this.id, this.listing).subscribe(() => {
       this._router.navigate(['/listings']);
     });
   }

@@ -15,9 +15,9 @@ export class ListingsComponent implements OnInit {
   constructor(private _router: Router, private _listingService: ListingService) { }
 
   deleteListing(listing: Listing): void {
-    const confirmDelete = confirm(`Are you sure you want to delete "${listing.name}"?`);
+    const confirmDelete = confirm(`Are you sure you want to delete "${listing.Name}"?`);
     if (confirmDelete) {
-      this._listingService.deleteListing(listing.id).subscribe(
+      this._listingService.deleteListing(listing.Id).subscribe(
         (response) => {
           if (response.success) {
             console.log(response.message);
@@ -35,6 +35,7 @@ export class ListingsComponent implements OnInit {
     this._listingService.getListings().subscribe((data) => {
       console.log('All', JSON.stringify(data));
       this.listings = data;
+      console.log(this.listings);
     });
   }
 

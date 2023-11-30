@@ -44,7 +44,7 @@ namespace Wildstays2.Controllers
 
             //If a user is not logged in
             //Gets all the listings for a user.
-            var listings = await _itemRepository.GetListingsByUserId(user.Id);
+            var listings = await _itemRepository.GetAll();
             return Ok(listings);
         }
 
@@ -91,7 +91,7 @@ namespace Wildstays2.Controllers
 
                 //Set User Id
                 // Create the listing
-                bool returnOk = await _itemRepository.Create(listing, Images);
+                bool returnOk = await _itemRepository.Create(listing);
                 if (returnOk)
                 {
                     _logger.LogDebug("Image url", Images);
@@ -116,7 +116,7 @@ namespace Wildstays2.Controllers
 
         [HttpPost]
         [HttpPut("edit/{id}")]
-        public async Task<IActionResult> Edit(int id, Listing listing, List<IFormFile> Images, int? deleteImage, string submit)
+        public async Task<IActionResult> Edit(int id, Listing listing, string submit)
         {
             //If the listing is not found
             if (id != listing.Id)
@@ -136,20 +136,13 @@ namespace Wildstays2.Controllers
 
             try
             {
-                //If the delete image button is tapped
-                if (deleteImage.HasValue)
-                {
-                    // Delete the image
-                    bool imageDeleted = await _itemRepository.DeleteImage(deleteImage.Value);
- 
-                }
 
                 if (ModelState.IsValid)
                 {
 
                     // Update the UserId so that it matches.
 
-                    var result = await _itemRepository.Update(existingListing, listing, Images, null); // Pass null for imageToDeleteId
+                    var result = await _itemRepository.Update(existingListing, listing); // Pass null for imageToDeleteId
 
                     if (result)
                     {
@@ -211,24 +204,5 @@ namespace Wildstays2.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
-
-        // GET: Listings/MyReservations
-        //Controller to show the user their reservations.
-        [Authorize]
-        public async Task<IActionResult> Reservation()
-        {
-            //Gets the user information
-            var user = await _userManager.GetUserAsync(User);
-            //If a user is not logged in they are returned to the login screen.
-            if (user == null)
-            {
-                return RedirectToAction("Login", "Identity/Account");
-            }
-            //Gets reservations based on UserID
-            var reservations = await _itemRepository.GetReservationByUserId(user.Id);
-            return View(reservations);
-        }
-
     }
 }

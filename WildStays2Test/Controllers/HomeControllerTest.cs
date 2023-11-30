@@ -23,7 +23,6 @@ public class HomeControllerTest
                 ListingId = 1,
                 StartDate = new DateTime(2023, 11, 2),
                 EndDate = new DateTime(2023, 11, 8),
-                UserId = "1",
                 Place = "Oslo"
             },
             new Reservation 
@@ -32,7 +31,6 @@ public class HomeControllerTest
                 ListingId = 2,
                 StartDate = new DateTime(2023, 12, 9), 
                 EndDate = new DateTime(2023, 12, 24),
-                UserId = "2",
                 Place = "Trondheim"
             }
         };

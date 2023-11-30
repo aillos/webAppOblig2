@@ -32,9 +32,6 @@ namespace Wildstays2.Models
         [JsonPropertyName("Listing")]
         public Listing Listing { get; set; }
 
-        [JsonPropertyName("UserId")]
-        public string UserId { get; set; }
-
         [JsonPropertyName("Place")]
         public string Place { get; set; }
     }

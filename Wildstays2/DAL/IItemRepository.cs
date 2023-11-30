@@ -9,8 +9,8 @@ public interface IItemRepository
     Task<IEnumerable<Listing>> GetListingsByUserId(string userId);
     Task<IEnumerable<Reservation>> GetReservationByUserId(string userId);
     Task<IEnumerable<Reservation>> GetReservationByPlace(string place);
-    Task<bool> Create(Listing listing, List<IFormFile> Images);
-    Task<bool> Update(Listing existingListing, Listing updatedListing, List<IFormFile> newImages, int? imageToDeleteId);
+    Task<bool> Create(Listing listing);
+    Task<bool> Update(Listing existingListing, Listing updatedListing);
     Task<bool> Delete(int id);
     Task<bool> DeleteImage(int imageId);
     Task<IEnumerable<Image>> GetImagesByListingId(int listingId);

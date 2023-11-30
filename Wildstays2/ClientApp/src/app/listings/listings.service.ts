@@ -12,17 +12,12 @@ export class ListingService {
 
   constructor(private _http: HttpClient) {}
 
-  updateListingEdit(id: number, listing: Listing, images: File[], deleteImageId?: number): Observable<any> {
+  updateListingEdit(id: number, listing: Listing): Observable<any> {
     const formData = new FormData();
     formData.append('listing', JSON.stringify(listing));
-    images.forEach((file, index) => formData.append(`Images[${index}]`, file, file.name));
 
-    if (deleteImageId !== undefined) {
-      formData.append('deleteImage', deleteImageId.toString());
-    }
 
-    const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
-    return this._http.put(`${this.baseUrl}/edit/${id}`, formData, { headers });
+    return this._http.put(`${this.baseUrl}/edit/${id}`, formData, );
   }
 
   updateListing(Id: number, newListing: any): Observable<any> {
@@ -60,7 +55,7 @@ export class ListingService {
   }
 
   createListing(newListing: Listing): Observable<any> {
-    const createUrl = 'api/listing/create';
+    const createUrl = 'api/listingform/create';
     return this._http.post<any>(createUrl, newListing).pipe(
       catchError((error) => {
         console.error('Error creating listing:', error);
